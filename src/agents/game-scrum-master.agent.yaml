@@ -37,10 +37,6 @@ agent:
       workflow: "{project-root}/_bmad/gds/workflows/4-production/create-story/workflow.yaml"
       description: "[CS] Create Story with direct ready-for-dev marking (Required to prepare stories for development)"
 
-    - trigger: VS or fuzzy match on validate-story
-      validate-workflow: "{project-root}/_bmad/gds/workflows/4-production/create-story/workflow.yaml"
-      description: "[VS] Validate Story Draft with Independent Review (Highly Recommended)"
-
     - trigger: ER or fuzzy match on epic-retrospective
       workflow: "{project-root}/_bmad/gds/workflows/4-production/retrospective/workflow.yaml"
       data: "{project-root}/_bmad/_config/agent-manifest.csv"
