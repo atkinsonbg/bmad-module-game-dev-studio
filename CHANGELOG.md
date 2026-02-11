@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v0.1.7 - Feb 10, 2026
+
+* Removed incorrect obsolete references to "validate-story" in the scrum-master agent and the help system.
+* Minor changes from recent BMM versions backported to production workflows.
+* Help files are in place. They are still somewhat placeholdery and will be improved soon.
+
 ## v0.1.5 - Feb 1, 2026
 
 * Improve module-help.csv descriptions with "Use when..." clauses for better LLM comprehension
