@@ -1,10 +1,11 @@
+/* eslint-disable n/no-process-exit, unicorn/no-process-exit -- CLI test runner */
 /**
  * Unit Tests for Agent Schema Edge Cases
  *
  * Tests internal functions to achieve 100% branch coverage
  */
 
-const { validateAgentFile } = require('./schema/agent.js');
+const { validateAgentFile } = require('./schema/agent.cjs');
 
 console.log('Running edge case unit tests...\n');
 
@@ -92,6 +93,7 @@ try {
         name: 'Test',
         title: 'Test',
         icon: '🧪',
+        hasSidecar: false,
         // No module field - correct for core agent
       },
       persona: {

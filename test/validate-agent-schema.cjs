@@ -1,10 +1,11 @@
+/* eslint-disable n/no-process-exit, unicorn/no-process-exit -- CLI validator */
 /**
  * Agent Schema Validator CLI
  *
  * Scans all *.agent.yaml files in src/{core,modules/*}/agents/
  * and validates them against the Zod schema.
  *
- * Usage: node tools/validate-agent-schema.js [project_root]
+ * Usage: node test/validate-agent-schema.cjs [project_root]
  * Exit codes: 0 = success, 1 = validation failures
  *
  * Optional argument:
@@ -15,7 +16,7 @@ const { glob } = require('glob');
 const yaml = require('yaml');
 const fs = require('node:fs');
 const path = require('node:path');
-const { validateAgentFile } = require('./schema/agent.js');
+const { validateAgentFile } = require('./schema/agent.cjs');
 
 /**
  * Main validation routine

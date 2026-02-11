@@ -13,6 +13,7 @@ const COMPOUND_TRIGGER_PATTERN = /^([A-Z]{1,3}) or fuzzy match on ([a-z0-9]+(?:-
  * @param {string} kebabTrigger The kebab-case trigger name.
  * @returns {string} The expected uppercase shortcut.
  */
+/* eslint-disable no-unused-vars -- reserved for future shortcut validation */
 function deriveShortcutFromKebab(kebabTrigger) {
   const words = kebabTrigger.split('-');
   if (words.length === 1) {
@@ -20,6 +21,7 @@ function deriveShortcutFromKebab(kebabTrigger) {
   }
   return (words[0][0] + words[1][0]).toUpperCase();
 }
+/* eslint-enable no-unused-vars */
 
 /**
  * Parse and validate a compound trigger string.
@@ -222,6 +224,7 @@ function buildAgentSchema(expectedModule) {
  * @param {string|null} expectedModule Trimmed module slug or null when core agent metadata is expected.
  * Note: Module field is optional and can be any value - no validation against path.
  */
+// eslint-disable-next-line no-unused-vars -- parameter reserved for future module validation
 function buildMetadataSchema(expectedModule) {
   const schemaShape = {
     id: createNonEmptyString('agent.metadata.id'),

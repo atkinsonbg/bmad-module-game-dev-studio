@@ -1,17 +1,18 @@
+/* eslint-disable n/no-process-exit, unicorn/no-process-exit -- CLI test runner */
 /**
  * Agent Schema Validation Test Runner
  *
  * Runs all test fixtures and verifies expected outcomes.
  * Reports pass/fail for each test and overall coverage statistics.
  *
- * Usage: node test/test-agent-schema.js
+ * Usage: node test/test-agent-schema.cjs
  * Exit codes: 0 = all tests pass, 1 = test failures
  */
 
 const fs = require('node:fs');
 const path = require('node:path');
 const yaml = require('yaml');
-const { validateAgentFile } = require('./schema/agent.js');
+const { validateAgentFile } = require('./schema/agent.cjs');
 const { glob } = require('glob');
 
 // ANSI color codes
@@ -63,7 +64,7 @@ function parseTestMetadata(filePath) {
 
     const minimumMatch = line.match(/^# Error minimum: (\d+)$/);
     if (minimumMatch) {
-      errorExpectation.minimum = parseInt(minimumMatch[1], 10);
+      errorExpectation.minimum = Number.parseInt(minimumMatch[1], 10);
     }
 
     const expectedMatch = line.match(/^# Error expected: (.+)$/);
@@ -103,8 +104,8 @@ function parsePathString(pathString) {
     .replaceAll(/\[(\d+)\]/g, '.$1') // Convert [0] to .0
     .split('.')
     .map((part) => {
-      const num = parseInt(part, 10);
-      return isNaN(num) ? part : num;
+      const num = Number.parseInt(part, 10);
+      return Number.isNaN(num) ? part : num;
     });
 }
 
@@ -208,11 +209,7 @@ function runTest(filePath) {
       if (parts.includes('metadata') && parts[0] === 'valid') {
         // Valid metadata tests: check if filename suggests module or core
         const filename = path.basename(filePath);
-        if (filename.includes('module')) {
-          validationPath = 'src/modules/bmm/agents/test.agent.yaml';
-        } else {
-          validationPath = 'src/core/agents/test.agent.yaml';
-        }
+        validationPath = filename.includes('module') ? 'src/modules/bmm/agents/test.agent.yaml' : 'src/core/agents/test.agent.yaml';
       } else if (parts.includes('metadata') && parts[0] === 'invalid') {
         // Invalid metadata tests: derive from filename
         const filename = path.basename(filePath);

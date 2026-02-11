@@ -31,8 +31,8 @@
     "release:patch": "npm version patch && git push --follow-tags",
     "release:prerelease": "npm version prerelease && git push --follow-tags",
     "test": "npm run test:schemas && npm run validate:schemas && npm run lint && npm run lint:md && npm run format:check",
-    "test:schemas": "node test/test-agent-schema.js",
-    "validate:schemas": "node test/validate-agent-schema.js"
+    "test:schemas": "node test/test-agent-schema.cjs",
+    "validate:schemas": "node test/validate-agent-schema.cjs"
   },
   "lint-staged": {
     "*.{js,cjs,mjs}": [
@@ -80,7 +80,8 @@
     "xml2js": "^0.6.2",
     "yaml": "^2.7.0",
     "yaml-eslint-parser": "^1.2.3",
-    "yaml-lint": "^1.7.0"
+    "yaml-lint": "^1.7.0",
+    "zod": "^3.25.76"
   },
   "engines": {
     "node": ">=22.0.0"
