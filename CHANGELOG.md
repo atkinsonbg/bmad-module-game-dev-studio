@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v0.1.8 - Feb 22, 2026
+
+* Standardize all 21 workflow descriptions to follow consistent format for improved AI skill invocation accuracy
+  - Add short human-readable prefixes to descriptions
+  - Use explicit trigger phrases with intent markers
+  - Limit to max 2 phrases per workflow to reduce false positives
+  - Fix substring matching issues with questions
+
 ## v0.1.7 - Feb 10, 2026
 
 * Removed incorrect obsolete references to "validate-story" in the scrum-master agent and the help system.
