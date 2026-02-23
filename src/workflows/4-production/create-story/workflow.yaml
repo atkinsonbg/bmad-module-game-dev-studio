@@ -1,5 +1,5 @@
 name: create-story
-description: "User story creation from epics. Use when the user says 'lets create a user story' or 'I want to create a user story'"
+description: 'User story creation from epics. Use when the user says "lets create a user story" or "I want to create a user story"'
 author: "BMad"
 
 # Critical variables from config

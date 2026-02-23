@@ -8,7 +8,7 @@ workflow:
   agent: game-qa
 
   description: |
-    E2E testing infrastructure scaffolder. Use when the user says 'lets scaffold e2e testing infrastructure for game project'
+    E2E testing infrastructure scaffolder. Use when the user says "lets scaffold e2e testing infrastructure for game project"
 
   triggers:
     - "ES"

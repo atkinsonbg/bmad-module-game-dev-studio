@@ -1,6 +1,6 @@
 # Retrospective - Epic Completion Review Workflow
 name: "retrospective"
-description: "Post-epic review and lessons learned. Use when the user says 'lets run a retrospective' or 'execute epic completion review'"
+description: 'Post-epic review and lessons learned. Use when the user says "lets run a retrospective" or "execute epic completion review"'
 author: "BMad"
 
 config_source: "{project-root}/_bmad/gds/config.yaml"

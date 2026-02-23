@@ -1,6 +1,6 @@
 # Game QA workflow: test-design
 name: gametest-test-design
-description: "Game test scenario creator. Use when the user says 'lets create game test scenarios'"
+description: 'Game test scenario creator. Use when the user says "lets create game test scenarios"'
 author: "BMad"
 
 # Critical variables from config

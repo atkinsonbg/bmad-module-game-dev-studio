@@ -1,5 +1,5 @@
 name: dev-story
-description: "Story implementation and testing workflow. Use when the user says 'lets implement story tasks' or 'lets write tests for story'"
+description: 'Story implementation and testing workflow. Use when the user says "lets implement story tasks" or "lets write tests for story"'
 author: "BMad"
 
 # Critical variables from config

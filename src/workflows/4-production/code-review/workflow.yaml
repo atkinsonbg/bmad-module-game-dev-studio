@@ -1,6 +1,6 @@
 # Review Story Workflow - Game Development
 name: code-review
-description: "Adversarial game dev code review. Use when the user says 'lets review this code for game dev issues'"
+description: 'Adversarial game dev code review. Use when the user says "lets review this code for game dev issues"'
 author: "BMad"
 
 # Critical variables from config

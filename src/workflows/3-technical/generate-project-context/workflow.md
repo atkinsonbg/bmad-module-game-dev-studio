@@ -1,6 +1,6 @@
 ---
 name: generate-project-context
-description: Generate AI-optimized project context file. Use when the user says 'lets create project context for game dev'
+description: 'Generate AI-optimized project context file. Use when the user says "lets create project context for game dev"'
 ---
 
 # Generate Project Context Workflow
