@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v0.1.9 - Feb 23, 2026
+
+* Fix workflow YAML quoting to prevent installation breakage
+
 ## v0.1.8 - Feb 22, 2026
 
 * Standardize all 21 workflow descriptions to follow consistent format for improved AI skill invocation accuracy
