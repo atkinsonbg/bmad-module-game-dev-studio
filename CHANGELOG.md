@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v0.1.10 - Feb 28, 2026
+
+* Knowledge base added for the 4 most popular game development engines (Unity, Unreal, Godot and Phaser) to inform the game architecture design workflow.
+
 ## v0.1.9 - Feb 23, 2026
 
 * Fix workflow YAML quoting to prevent installation breakage
