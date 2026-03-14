@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v0.2.1 - Mar 13, 2026
+
+* Fix: Rename all skill directories to use `gds-` prefix for multi-module coexistence
+* Fix: Remove accidentally committed `.idea/` directory
+
 ## v0.2.0 - Mar 13, 2026
 
 ### Skill Format Migration
