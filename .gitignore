@@ -60,3 +60,4 @@ build/
 
 /.obsidian/
 /docs/game-dev/
+.idea/
