@@ -49,5 +49,5 @@ agent:
       web-only: true
 
     - trigger: QQ or fuzzy match on quick-dev-new-preview
-      exec: "{project-root}/_bmad/gds/workflows/gds-quick-flow/quick-dev-new-preview/workflow.md"
+      exec: "{project-root}/_bmad/gds/workflows/gds-quick-flow/gds-quick-dev-new-preview/workflow.md"
       description: "[QQ] Quick Dev New (Preview): Unified quick flow - clarify, plan, implement, review, present (experimental)"

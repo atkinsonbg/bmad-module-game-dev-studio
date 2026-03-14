@@ -1,5 +1,5 @@
 ---
-name: bmad-create-ux-design
+name: gds-create-ux-design
 description: 'Create UX design specifications for game UI/HUD elements. Use when the user says "lets create a UX design" or "create game UI design"'
 ---
 

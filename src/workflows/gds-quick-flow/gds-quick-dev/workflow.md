@@ -1,5 +1,5 @@
 ---
-name: quick-dev
+name: gds-quick-dev
 description: 'Flexible development workflow - execute tech-specs OR direct instructions with optional planning. Use when the user says "lets implement this feature" or "execute these development tasks"'
 ---
 
@@ -34,7 +34,7 @@ Load config from `{project-root}/_bmad/gds/config.yaml` and resolve:
 
 ### Paths
 
-- `installed_path` = `{project-root}/_bmad/gds/workflows/gds-quick-flow/quick-dev`
+- `installed_path` = `{project-root}/_bmad/gds/workflows/gds-quick-flow/gds-quick-dev`
 - `project_context` = `**/project-context.md` (load if exists)
 - `project_levels` = `{project-root}/_bmad/gds/workflows/workflow-status/project-levels.yaml`
 

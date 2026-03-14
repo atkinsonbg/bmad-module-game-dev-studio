@@ -7,7 +7,7 @@ web_bundle: true
 # Checkpoint handler references
 advanced_elicitation: 'skill:gds-advanced-elicitation'
 party_mode_exec: '{project-root}/_bmad/core/workflows/bmad-party-mode/workflow.md'
-quick_dev_workflow: '{project-root}/_bmad/gds/workflows/gds-quick-flow/quick-dev/workflow.md'
+quick_dev_workflow: '{project-root}/_bmad/gds/workflows/gds-quick-flow/gds-quick-dev/workflow.md'
 ---
 
 # Quick-Spec Workflow

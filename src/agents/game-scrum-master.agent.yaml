@@ -34,7 +34,7 @@ agent:
       description: "[SS] View sprint progress, surface risks, and get next action recommendation"
 
     - trigger: CS or fuzzy match on create-story
-      exec: "skill:bmad-create-story"
+      exec: "skill:gds-create-story"
       description: "[CS] Create Story with direct ready-for-dev marking (Required to prepare stories for development)"
 
     - trigger: ER or fuzzy match on epic-retrospective

@@ -26,7 +26,7 @@ agent:
 
   menu:
     - trigger: DS or fuzzy match on dev-story
-      exec: "skill:bmad-dev-story"
+      exec: "skill:gds-dev-story"
       description: "[DS] Execute Dev Story workflow, implementing tasks and tests"
 
     - trigger: CR or fuzzy match on code-review
