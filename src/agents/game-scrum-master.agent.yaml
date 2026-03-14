@@ -26,24 +26,24 @@ agent:
 
   menu:
     - trigger: SP or fuzzy match on sprint-planning
-      workflow: "{project-root}/_bmad/gds/workflows/4-production/sprint-planning/workflow.yaml"
+      exec: "{project-root}/_bmad/gds/workflows/4-production/sprint-planning/workflow.md"
       description: "[SP] Generate or update sprint-status.yaml from epic files (Required after GDD+Epics are created)"
 
     - trigger: SS or fuzzy match on sprint-status
-      workflow: "{project-root}/_bmad/gds/workflows/4-production/sprint-status/workflow.yaml"
+      exec: "{project-root}/_bmad/gds/workflows/4-production/sprint-status/workflow.md"
       description: "[SS] View sprint progress, surface risks, and get next action recommendation"
 
     - trigger: CS or fuzzy match on create-story
-      workflow: "{project-root}/_bmad/gds/workflows/4-production/create-story/workflow.yaml"
+      exec: "skill:bmad-create-story"
       description: "[CS] Create Story with direct ready-for-dev marking (Required to prepare stories for development)"
 
     - trigger: ER or fuzzy match on epic-retrospective
-      workflow: "{project-root}/_bmad/gds/workflows/4-production/retrospective/workflow.yaml"
+      exec: "{project-root}/_bmad/gds/workflows/4-production/retrospective/workflow.md"
       data: "{project-root}/_bmad/_config/agent-manifest.csv"
       description: "[ER] Facilitate team retrospective after a game development epic is completed"
 
     - trigger: CC or fuzzy match on correct-course
-      workflow: "{project-root}/_bmad/gds/workflows/4-production/correct-course/workflow.yaml"
+      exec: "{project-root}/_bmad/gds/workflows/4-production/correct-course/workflow.md"
       description: "[CC] Navigate significant changes during game dev sprint (When implementation is off-track)"
 
     - trigger: AE or fuzzy match on advanced-elicitation

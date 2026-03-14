@@ -1,5 +1,39 @@
 # CHANGELOG
 
+## v0.2.0 - Mar 13, 2026
+
+### Skill Format Migration
+
+All workflows converted to the unified skill format. This aligns with BMAD-METHOD Beta 7 conventions and enables consistent skill-based invocation across all agentic tools.
+
+**Phase 3 (3-technical) - 2 new workflows:**
+
+* NEW: check-implementation-readiness - ported from BMAD-METHOD, adapted for GDD-based validation
+* NEW: create-epics-and-stories - ported from BMAD-METHOD, adapted for game design requirements
+
+**Phase 2 (2-design) - 2 new workflows:**
+
+* NEW: create-ux-design - ported from BMAD-METHOD, adapted for game UI/HUD design with player-centric framing
+* NEW: create-prd - optional workflow for generating PRDs from GDD, primarily for external tool compatibility (bmad-assist)
+
+**Phase 1 (1-preproduction) - 1 new workflow suite:**
+
+* NEW: research suite (market, domain, technical) - ported from BMAD-METHOD with game industry context (player demographics, ESRB/PEGI ratings, game engine research, middleware evaluation)
+
+**Quick Flow - 1 new workflow:**
+
+* NEW: quick-dev-new-preview - unified quick flow (experimental), ported from BMAD-METHOD
+
+### Agent Updates
+
+* All 7 agent files updated to use new skill format
+* game-architect: added check-implementation-readiness menu item
+* game-solo-dev: added quick-dev-new-preview menu item
+
+### Help System
+
+* bmad-help fully updated with correct workflow paths, new workflows, and skill references
+
 ## v0.1.10 - Feb 28, 2026
 
 * Knowledge base added for the 4 most popular game development engines (Unity, Unreal, Godot and Phaser) to inform the game architecture design workflow.

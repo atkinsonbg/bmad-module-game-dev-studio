@@ -30,31 +30,31 @@ agent:
 
   menu:
     - trigger: TF or fuzzy match on test-framework
-      workflow: "{project-root}/_bmad/gds/workflows/gametest/test-framework/workflow.yaml"
+      exec: "{project-root}/_bmad/gds/workflows/gametest/test-framework/workflow.md"
       description: "[TF] Initialize game test framework (Unity/Unreal/Godot)"
 
     - trigger: TD or fuzzy match on test-design
-      workflow: "{project-root}/_bmad/gds/workflows/gametest/test-design/workflow.yaml"
+      exec: "{project-root}/_bmad/gds/workflows/gametest/test-design/workflow.md"
       description: "[TD] Create comprehensive game test scenarios"
 
     - trigger: TA or fuzzy match on test-automate
-      workflow: "{project-root}/_bmad/gds/workflows/gametest/automate/workflow.yaml"
+      exec: "{project-root}/_bmad/gds/workflows/gametest/automate/workflow.md"
       description: "[TA] Generate automated game tests"
 
     - trigger: ES or fuzzy match on e2e-scaffold
-      workflow: "{project-root}/_bmad/gds/workflows/gametest/e2e-scaffold/workflow.yaml"
+      exec: "{project-root}/_bmad/gds/workflows/gametest/e2e-scaffold/workflow.md"
       description: "[ES] Scaffold E2E testing infrastructure"
 
     - trigger: PP or fuzzy match on playtest-plan
-      workflow: "{project-root}/_bmad/gds/workflows/gametest/playtest-plan/workflow.yaml"
+      exec: "{project-root}/_bmad/gds/workflows/gametest/playtest-plan/workflow.md"
       description: "[PP] Create structured playtesting plan"
 
     - trigger: PT or fuzzy match on performance-test
-      workflow: "{project-root}/_bmad/gds/workflows/gametest/performance/workflow.yaml"
+      exec: "{project-root}/_bmad/gds/workflows/gametest/performance/workflow.md"
       description: "[PT] Design performance testing strategy"
 
     - trigger: TR or fuzzy match on test-review
-      workflow: "{project-root}/_bmad/gds/workflows/gametest/test-review/workflow.yaml"
+      exec: "{project-root}/_bmad/gds/workflows/gametest/test-review/workflow.md"
       description: "[TR] Review test quality and coverage"
 
     - trigger: AE or fuzzy match on advanced-elicitation
