@@ -1,5 +1,29 @@
 # CHANGELOG
 
+## v0.2.2 - Mar 16, 2026
+
+### Agent Skill Conversion
+
+All 7 agent YAML files converted to native skill format (`gds-agent-*` directories with SKILL.md and bmad-skill-manifest.yaml). Agents are now invocable as skills rather than parsed from YAML definitions.
+
+* Cloud Dragonborn (Game Architect), Samus Shepard (Game Designer), Link Freeman (Game Developer), Indie (Game Solo Dev), Max (Scrum Master), GLaDOS (Game QA), Paige (Technical Writer)
+* Tech Writer agent now includes prompt files for each capability (write-document, validate-doc, mermaid-gen, explain-concept, update-standards)
+
+### Complete gds- Prefix Rename
+
+All remaining workflow directories renamed to use `gds-` prefix for multi-module coexistence. This completes the rename started in v0.2.1.
+
+* 22 workflow directories renamed (production, technical, gametest, design, preproduction, document-project, quick-spec)
+* All step file `workflow_path` references updated to match new directory names
+* SKILL.md passthrough files added to all renamed directories
+
+### Other Changes
+
+* module-help.csv updated to use `skill:` references for all workflows
+* Removed `src/teams/` folder (default-party.csv, team-gamedev.yaml)
+* Removed agent YAML schema test infrastructure (fixtures, schema, test scripts)
+* Simplified all workflow bmad-skill-manifest.yaml to `type: skill`
+
 ## v0.2.1 - Mar 13, 2026
 
 * Fix: Rename all skill directories to use `gds-` prefix for multi-module coexistence
