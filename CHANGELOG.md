@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v0.2.3 - Apr 1, 2026
+
+### Opencode Compatibility Fix
+
+* Changed SKILL.md workflow references from markdown links (`[workflow.md](workflow.md)`) to bare paths (`./workflow.md`) across all 28 workflow skills, matching the BMAD-METHOD convention. Opencode does not follow markdown-style links when resolving skill workflow files.
+
 ## v0.2.2 - Mar 16, 2026
 
 ### Agent Skill Conversion
