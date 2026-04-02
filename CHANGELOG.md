@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## v0.2.4 - Apr 1, 2026
+
+### Decouple Skills from \_bmad/ Install Directory
+
+All skill file references migrated away from hardcoded `_bmad/` paths to forward-compatible patterns, anticipating the BMAD-METHOD installer change that stops copying skill directories into `_bmad/` (BMAD-METHOD PR #2182).
+
+* Core skill references (party-mode, advanced-elicitation, brainstorming, adversarial-review) converted to `skill:bmad-*` invocations across 68+ files
+* GDS self-references converted: step `workflow_path` → `{installed_path}`, cross-workflow handoffs → `skill:gds-*`, config → `{module_config}`, installed paths → `{skill_root}`
+* Next-step navigation converted to relative paths (`./step-NN-*.md`)
+* Data file references (CSVs, templates) converted to relative paths (`../data/`, `../templates/`)
+* Fixed 31 files using incorrect `bmad-party-mode` path (installer strips `bmad-` prefix, correct installed name is `party-mode`)
+
+### Fix project-context.md Not Applied During Story Creation and Development
+
+* Added `project-context.md` to `gds-create-story` Input Files table so `discover-inputs.md` actually loads it
+* Added project-context analysis step that extracts third-party frameworks, MCP configs, and conventions into story Dev Notes
+* Added "Project Context Rules" section to story template
+* Updated `gds-dev-story` to extract and actively apply project-context rules during implementation (Steps 2 and 5)
+
 ## v0.2.3 - Apr 1, 2026
 
 ### Opencode Compatibility Fix
