@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Unreleased — sync with BMAD-METHOD v6.3.0
+## v0.3.0 - Apr 14, 2026 — sync with BMAD-METHOD v6.3.0
 
 ### Phase 4 agent consolidation
 

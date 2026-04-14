@@ -12,7 +12,7 @@
       "name": "bmad-game-dev-studio",
       "source": "./",
       "description": "A comprehensive game development module with agents and workflows for preproduction, design, architecture, production, and testing across Unity, Unreal, and Godot. Part of the BMad Method ecosystem.",
-      "version": "0.2.4",
+      "version": "0.3.0",
       "author": {
         "name": "Brian (BMad) Madison"
       },
@@ -20,8 +20,6 @@
         "./src/agents/gds-agent-game-architect",
         "./src/agents/gds-agent-game-designer",
         "./src/agents/gds-agent-game-dev",
-        "./src/agents/gds-agent-game-qa",
-        "./src/agents/gds-agent-game-scrum-master",
         "./src/agents/gds-agent-game-solo-dev",
         "./src/agents/gds-agent-tech-writer",
         "./src/workflows/1-preproduction/gds-brainstorm-game",
@@ -29,7 +27,12 @@
         "./src/workflows/1-preproduction/research/gds-domain-research",
         "./src/workflows/2-design/gds-create-gdd",
         "./src/workflows/2-design/gds-create-narrative",
+        "./src/workflows/2-design/gds-create-prd",
         "./src/workflows/2-design/gds-create-ux-design",
+        "./src/workflows/2-design/gds-edit-gdd",
+        "./src/workflows/2-design/gds-edit-prd",
+        "./src/workflows/2-design/gds-validate-gdd",
+        "./src/workflows/2-design/gds-validate-prd",
         "./src/workflows/3-technical/gds-check-implementation-readiness",
         "./src/workflows/3-technical/gds-create-epics-and-stories",
         "./src/workflows/3-technical/gds-game-architecture",
@@ -49,9 +52,7 @@
         "./src/workflows/gametest/gds-test-framework",
         "./src/workflows/gametest/gds-test-review",
         "./src/workflows/gds-document-project",
-        "./src/workflows/gds-quick-flow/gds-quick-dev",
-        "./src/workflows/gds-quick-flow/gds-quick-dev-new-preview",
-        "./src/workflows/gds-quick-flow/gds-quick-spec"
+        "./src/workflows/gds-quick-flow/gds-quick-dev"
       ]
     }
   ]
