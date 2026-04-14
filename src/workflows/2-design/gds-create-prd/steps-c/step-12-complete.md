@@ -4,7 +4,7 @@ description: 'Complete the PRD workflow, update status files, and suggest next s
 
 # File References
 outputFile: '{planning_artifacts}/prd.md'
-validationFlow: '../steps-v/step-v-01-discovery.md'
+validationWorkflow: 'skill:gds-validate-prd'
 ---
 
 # Step 12: Workflow Completion

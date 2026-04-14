@@ -4,7 +4,7 @@ description: 'Complete & Validate - Present options for next steps including ful
 
 # File references (ONLY variables used in this step)
 prdFile: '{prd_file_path}'
-validationWorkflow: '../steps-v/step-v-01-discovery.md'
+validationWorkflow: 'skill:gds-validate-prd'
 ---
 
 # Step E-4: Complete & Validate
@@ -120,8 +120,7 @@ Display:
   - Display: "This will run all 13 validation checks on the updated PRD."
   - Display: "Preparing to validate: {prd_file_path}"
   - Display: "**Proceeding to validation...**"
-  - Read fully and follow: {validationWorkflow} (steps-v/step-v-01-discovery.md)
-  - Note: This hands off to the validation workflow which will run its complete 13-step process
+  - Invoke the `gds-validate-prd` skill — it will run its complete 13-step validation process on the updated PRD
 
 - **IF E (Edit More):**
   - Display: "**Additional Edits**"

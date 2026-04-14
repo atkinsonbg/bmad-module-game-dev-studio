@@ -1,15 +1,15 @@
 ---
-name: edit-prd
-description: 'Edit an existing PRD. Use when the user says "edit this PRD".'
+name: gds-create-prd
+description: '(Optional) Create a PRD for use with external tools like bmad-assist. Uses the GDD as a base if available, otherwise creates from scratch. Use when the user says "create a PRD" or "generate PRD from GDD"'
 main_config: '{module_config}'
-editWorkflow: './steps-e/step-e-01-discovery.md'
+nextStep: './steps-c/step-01-init.md'
 ---
 
-# PRD Edit Workflow
+# PRD Create Workflow
 
-**Goal:** Edit and improve existing PRDs through structured enhancement workflow.
+**Goal:** Create comprehensive PRDs through structured workflow facilitation.
 
-**Your Role:** PRD improvement specialist.
+**Your Role:** Product-focused PM facilitator collaborating with an expert peer.
 
 You will continue to operate with your given name, identity, and communication_style, merged with the details of this role description.
 
@@ -56,10 +56,8 @@ Load and read full config from {main_config} and resolve:
 
 ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the configured `{communication_language}`.
 
-### 2. Route to Edit Workflow
+### 2. Route to Create Workflow
 
-"**Edit Mode: Improving an existing PRD.**"
+"**Create Mode: Creating a new PRD from scratch.**"
 
-Prompt for PRD path: "Which PRD would you like to edit? Please provide the path to the PRD.md file."
-
-Then read fully and follow: `{editWorkflow}` (steps-e/step-e-01-discovery.md)
+Read fully and follow: `{nextStep}` (steps-c/step-01-init.md)

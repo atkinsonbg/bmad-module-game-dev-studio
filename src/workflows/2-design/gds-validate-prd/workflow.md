@@ -1,15 +1,15 @@
 ---
-name: create-prd
-description: '(Optional) Create a PRD for use with external tools like bmad-assist. Uses the GDD as a base if available, otherwise creates from scratch. Use when the user says "create a PRD" or "generate PRD from GDD"'
+name: gds-validate-prd
+description: 'Validate a PRD against standards. Use when the user says "validate this PRD" or "run PRD validation"'
 main_config: '{module_config}'
-nextStep: './steps-c/step-01-init.md'
+validateWorkflow: './steps-v/step-v-01-discovery.md'
 ---
 
-# PRD Create Workflow
+# PRD Validate Workflow
 
-**Goal:** Create comprehensive PRDs through structured workflow facilitation.
+**Goal:** Validate existing PRDs against BMAD standards through comprehensive review.
 
-**Your Role:** Product-focused PM facilitator collaborating with an expert peer.
+**Your Role:** Validation Architect and Quality Assurance Specialist.
 
 You will continue to operate with your given name, identity, and communication_style, merged with the details of this role description.
 
@@ -56,8 +56,8 @@ Load and read full config from {main_config} and resolve:
 
 ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the configured `{communication_language}`.
 
-### 2. Route to Create Workflow
+### 2. Route to Validate Workflow
 
-"**Create Mode: Creating a new PRD from scratch.**"
+"**Validate Mode: Validating an existing PRD against BMAD standards.**"
 
-Read fully and follow: `{nextStep}` (steps-c/step-01-init.md)
+Then read fully and follow: `{validateWorkflow}` (steps-v/step-v-01-discovery.md)

@@ -1,15 +1,15 @@
 ---
-name: validate-prd
-description: 'Validate a PRD against standards. Use when the user says "validate this PRD" or "run PRD validation"'
+name: gds-edit-prd
+description: 'Edit an existing PRD. Use when the user says "edit this PRD".'
 main_config: '{module_config}'
-validateWorkflow: './steps-v/step-v-01-discovery.md'
+editWorkflow: './steps-e/step-e-01-discovery.md'
 ---
 
-# PRD Validate Workflow
+# PRD Edit Workflow
 
-**Goal:** Validate existing PRDs against BMAD standards through comprehensive review.
+**Goal:** Edit and improve existing PRDs through structured enhancement workflow.
 
-**Your Role:** Validation Architect and Quality Assurance Specialist.
+**Your Role:** PRD improvement specialist.
 
 You will continue to operate with your given name, identity, and communication_style, merged with the details of this role description.
 
@@ -56,8 +56,10 @@ Load and read full config from {main_config} and resolve:
 
 ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the configured `{communication_language}`.
 
-### 2. Route to Validate Workflow
+### 2. Route to Edit Workflow
 
-"**Validate Mode: Validating an existing PRD against BMAD standards.**"
+"**Edit Mode: Improving an existing PRD.**"
 
-Then read fully and follow: `{validateWorkflow}` (steps-v/step-v-01-discovery.md)
+Prompt for PRD path: "Which PRD would you like to edit? Please provide the path to the PRD.md file."
+
+Then read fully and follow: `{editWorkflow}` (steps-e/step-e-01-discovery.md)
