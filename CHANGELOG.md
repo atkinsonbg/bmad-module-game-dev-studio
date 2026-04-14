@@ -1,5 +1,27 @@
 # CHANGELOG
 
+## Unreleased — sync with BMAD-METHOD v6.3.0
+
+### Phase 4 agent consolidation
+
+* Merged `gds-agent-game-qa` (GLaDOS) and `gds-agent-game-scrum-master` (Max) into `gds-agent-game-dev` (Link Freeman). Mirrors upstream BMAD-METHOD's collapse of QA and Scrum Master agents into a single Developer agent (upstream PRs #2179, #2186). Link now owns DS, CR, QD, CS, SP, SS, CC, ER, TF, TD, TA, ES, PP, PT, TR capabilities — 16 roles in one agent.
+* `src/gametest/` (17 testing knowledge fragments + `qa-index.csv`) relocated to `src/agents/gds-agent-game-dev/gametest/`. Path references updated from `{module_root}/gametest/` to `{skill_root}/gametest/`. Reason: `_bmad-output/` is being deprecated as a runtime location; QA knowledge lives with the agent that uses it.
+
+### Quick-dev overhaul
+
+* Deleted `gds-quick-dev` (execute-only flow), `gds-quick-spec` (absorbed into new quick-dev's step-02-plan), and `gds-quick-dev-new-preview` (superseded).
+* Ported upstream `bmad-quick-dev` as the replacement: a hardened clarify → plan → implement → review → present flow with a `step-oneshot.md` variant. Adds `compile-epic-context.md` and `sync-sprint-status.md` helpers.
+
+### PRD + GDD split into 3-skill structures
+
+* PRD split: consolidated `create-prd/` (with `workflow-create-prd.md`, `workflow-edit-prd.md`, `workflow-validate-prd.md` and shared `steps-c/`, `steps-e/`, `steps-v/`) split into independent skill dirs — `gds-create-prd`, `gds-edit-prd`, `gds-validate-prd`. Each has its own `SKILL.md` and `workflow.md`. Mirrors upstream's 3-skill PRD layout.
+* GDD split: `gds-create-gdd/steps/` renamed to `steps-c/` for parity. New `gds-edit-gdd` and `gds-validate-gdd` skills added as structural placeholders that delegate to their PRD counterparts pending GDD-specific step-body authoring (tracked in `TODO.md`).
+* Ported upstream's content updates to PRD steps: step-08-scoping reframes MVP/Growth/Vision phasing as user-chosen (phased OR single-release) with a SCOPE CHANGE CONFIRMATION GATE; step-11-polish and step-e-* files gain the `document_output_language` rule.
+
+### Phase 4 workflow mirror
+
+* All seven production-phase skills — `gds-code-review`, `gds-correct-course`, `gds-create-story`, `gds-dev-story`, `gds-retrospective`, `gds-sprint-planning`, `gds-sprint-status` — ported from upstream Phase 4 counterparts. `gds-code-review` adopts upstream's step-file architecture (`steps/step-01..04`). Config paths unified to `{module_config}`; all `bmad-agent-dev` references rewritten to `gds-agent-game-dev`.
+
 ## v0.2.4 - Apr 1, 2026
 
 ### Decouple Skills from \_bmad/ Install Directory
