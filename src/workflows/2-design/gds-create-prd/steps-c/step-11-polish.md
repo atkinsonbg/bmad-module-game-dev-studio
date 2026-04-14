@@ -26,6 +26,7 @@ partyModeWorkflow: 'skill:bmad-party-mode'
 - 💬 PRESERVE user's voice and intent
 - 🎯 MAINTAIN all essential information while improving presentation
 - ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
+- ✅ YOU MUST ALWAYS WRITE all artifact and document content in `{document_output_language}`
 
 ## EXECUTION PROTOCOLS:
 
@@ -151,7 +152,7 @@ Make targeted improvements:
 - All user success criteria
 - All functional requirements (capability contract)
 - All user journey narratives
-- All scope decisions (MVP, Growth, Vision)
+- All scope decisions (whether phased or single-release), including consent-critical evidence (explicit user confirmations and rationales for any scope changes from step 8)
 - All non-functional requirements
 - Product differentiator and vision
 - Domain-specific requirements
