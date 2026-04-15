@@ -65,7 +65,9 @@ BMGD is installed as a module during BMad Method setup:
 npx bmad-method install
 ```
 
-Select **Game Dev Studio** from the modules list.
+Select **Game Dev Studio** from the modules list. 
+
+*Just a heads-up: if you’re only using Game Dev Studio (GDS), you don’t need to install the main BMM module. GDS runs on its own, but BMM gets updated more often, so you might want to use its workflows—they work together nicely!*
 
 ## Quick Start
 
