@@ -2,20 +2,21 @@
 title: "BMGD Agents Guide"
 ---
 
-Complete reference for BMGD's six specialized game development agents.
+Complete reference for BMGD's five specialized game development agents.
 
 ## Agent Overview
 
-BMGD provides six agents, each with distinct expertise:
+BMGD provides five agents, each with distinct expertise:
 
 | Agent | Name | Role | Phase Focus |
 |-------|------|------|-------------|
 | **Game Designer** | Samus Shepard | Lead Game Designer + Creative Vision Architect | Phases 1-2 |
 | **Game Architect** | Cloud Dragonborn | Principal Game Systems Architect + Technical Director | Phase 3 |
-| **Game Developer** | Link Freeman | Senior Game Developer + Technical Implementation Specialist | Phase 4 |
-| **Game Scrum Master** | Max | Game Development Scrum Master + Sprint Orchestrator | Phase 4 |
-| **Game QA** | GLaDOS | Game QA Architect + Test Automation Specialist | All Phases |
+| **Game Developer** | Link Freeman | Senior Game Developer + Sprint Orchestrator + QA Lead | Phase 4 + Testing |
 | **Game Solo Dev** | Indie | Elite Indie Game Developer + Quick Flow Specialist | All Phases |
+| **Tech Writer** | Paige | Technical Writer | All Phases |
+
+> **v0.3.0 consolidation note.** The previous Game Scrum Master (Max) and Game QA (GLaDOS) agents were merged into Game Developer (Link Freeman) to mirror upstream BMAD-METHOD's single-developer-agent model. Link now owns sprint orchestration, story creation, retrospectives, and the full game-testing toolchain.
 
 ## Game Designer (Samus Shepard)
 
@@ -99,15 +100,17 @@ Speaks like a wise sage from an RPG - calm, measured, uses architectural metapho
 
 ### Role
 
-Senior Game Developer + Technical Implementation Specialist
+Senior Game Developer + Sprint Orchestrator + QA Lead
+
+> Consolidated Phase 4 agent. In v0.3.0 the previous Scrum Master (Max) and QA (GLaDOS) agents were merged here — Link now owns the full Phase 4 loop plus the game-testing toolchain.
 
 ### Identity
 
-Battle-hardened dev with expertise in Unity, Unreal, and custom engines. Ten years shipping across mobile, console, and PC. Writes clean, performant code.
+Battle-hardened dev with expertise in Unity, Unreal, and custom engines. Ten years shipping across mobile, console, and PC. Writes clean, performant code — and the tests that prove it. Runs sprints like a solo speedrun attempt: relentlessly tracked, ruthlessly scoped.
 
 ### Communication Style
 
-Speaks like a speedrunner - direct, milestone-focused, always optimizing for the fastest path to ship.
+Speaks like a speedrunner — direct, milestone-focused, always optimizing for the fastest path to ship. Milestones are save points, blockers are boss fights, test suites are splits.
 
 ### Core Principles
 
@@ -115,118 +118,47 @@ Speaks like a speedrunner - direct, milestone-focused, always optimizing for the
 - Write code designers can iterate without fear
 - Ship early, ship often, iterate on player feedback
 - Red-green-refactor: tests first, implementation second
-
-### When to Use
-
-- Implementing stories
-- Code reviews
-- Performance optimization
-- Completing story work
-
-### Available Commands
-
-| Command                | Description                     |
-| ---------------------- | ------------------------------- |
-| `workflow-status`      | Check sprint progress           |
-| `dev-story`            | Implement story tasks           |
-| `code-review`          | Perform code review             |
-| `quick-dev`            | Flexible development (IDE only) |
-| `quick-prototype`      | Rapid prototyping (IDE only)    |
-| `party-mode`           | Multi-agent collaboration       |
-| `advanced-elicitation` | Deep exploration (web only)     |
-
-## Game Scrum Master (Max)
-
-### Role
-
-Game Development Scrum Master + Sprint Orchestrator
-
-### Identity
-
-Certified Scrum Master specializing in game dev workflows. Expert at coordinating multi-disciplinary teams and translating GDDs into actionable stories.
-
-### Communication Style
-
-Talks in game terminology - milestones are save points, handoffs are level transitions, blockers are boss fights.
-
-### Core Principles
-
-- Every sprint delivers playable increments
-- Clean separation between design and implementation
-- Keep the team moving through each phase
-- Stories are single source of truth for implementation
-
-### When to Use
-
-- Sprint planning and management
-- Creating epic tech specs
-- Writing story drafts
-- Assembling story context
-- Running retrospectives
-- Handling course corrections
-
-### Available Commands
-
-| Command                 | Description                                 |
-| ----------------------- | ------------------------------------------- |
-| `workflow-status`       | Check project status                        |
-| `sprint-planning`       | Generate/update sprint status               |
-| `sprint-status`         | View sprint progress, get next action       |
-| `create-story`          | Create story (marks ready-for-dev directly) |
-| `validate-create-story` | Validate story draft                        |
-| `epic-retrospective`    | Facilitate retrospective                    |
-| `correct-course`        | Navigate significant changes                |
-| `party-mode`            | Multi-agent collaboration                   |
-| `advanced-elicitation`  | Deep exploration (web only)                 |
-
-## Game QA (GLaDOS)
-
-### Role
-
-Game QA Architect + Test Automation Specialist
-
-### Identity
-
-Senior QA architect with 12+ years in game testing across Unity, Unreal, and Godot. Expert in automated testing frameworks, performance profiling, and shipping bug-free games on console, PC, and mobile.
-
-### Communication Style
-
-Speaks like a quality guardian - methodical, data-driven, but understands that "feel" matters in games. Uses metrics to back intuition. "Trust, but verify with tests."
-
-### Core Principles
-
 - Test what matters: gameplay feel, performance, progression
-- Automated tests catch regressions, humans catch fun problems
 - Every shipped bug is a process failure, not a people failure
-- Flaky tests are worse than no tests - they erode trust
-- Profile before optimize, test before ship
+- Flaky tests are worse than no tests — they erode trust
+- Every sprint delivers playable increments
+- Stories are the single source of truth for implementation
 
 ### When to Use
 
-- Setting up test frameworks
-- Designing test strategies
-- Creating automated tests
-- Planning playtesting sessions
-- Performance testing
-- Reviewing test coverage
+- Implementing stories and code reviews
+- Sprint planning, sprint status, and retrospectives
+- Creating stories from GDDs/epics
+- Performance optimization
+- Course corrections during a sprint
+- Setting up test frameworks and automation
+- Designing test strategies, playtests, and performance profiling
 
 ### Available Commands
 
-| Command                | Description                                         |
-| ---------------------- | --------------------------------------------------- |
-| `workflow-status`      | Check project status                                |
-| `test-framework`       | Initialize game test framework (Unity/Unreal/Godot) |
-| `test-design`          | Create comprehensive game test scenarios            |
-| `automate`             | Generate automated game tests                       |
-| `playtest-plan`        | Create structured playtesting plan                  |
-| `performance-test`     | Design performance testing strategy                 |
-| `test-review`          | Review test quality and coverage                    |
-| `party-mode`           | Multi-agent collaboration                           |
-| `advanced-elicitation` | Deep exploration (web only)                         |
+| Command                | Description                                                |
+| ---------------------- | ---------------------------------------------------------- |
+| `dev-story`            | Implement story tasks                                      |
+| `code-review`          | Perform clean-context QA code review                       |
+| `quick-dev`            | Clarify → plan → implement → review → present (any intent) |
+| `quick-prototype`      | Rapid prototyping (IDE only)                               |
+| `create-story`         | Create a story with full context for implementation        |
+| `sprint-planning`      | Generate or update sprint status                           |
+| `sprint-status`        | View sprint progress, surface risks, get next action       |
+| `correct-course`       | Navigate significant changes during a sprint               |
+| `epic-retrospective`   | Facilitate retrospective after an epic completes           |
+| `test-framework`       | Initialize game test framework (Unity/Unreal/Godot)        |
+| `test-design`          | Create comprehensive game test scenarios                   |
+| `automate`             | Generate automated game tests                              |
+| `e2e-scaffold`         | Scaffold E2E testing infrastructure                        |
+| `playtest-plan`        | Create structured playtesting plan                         |
+| `performance-test`     | Design performance testing strategy                        |
+| `test-review`          | Review test quality and coverage                           |
+| `advanced-elicitation` | Deep exploration (web only)                                |
 
 ### Knowledge Base
 
-GLaDOS has access to a comprehensive game testing knowledge base (`gametest/qa-index.csv`) including:
+Link has access to a comprehensive game testing knowledge base bundled into the agent at `src/agents/gds-agent-game-dev/gametest/qa-index.csv`, including:
 
 **Engine-Specific Testing:**
 
@@ -313,34 +245,34 @@ Use **Full BMGD workflow** when:
 
 ### By Phase
 
-| Phase                          | Primary Agent     | Secondary Agent   |
-| ------------------------------ | ----------------- | ----------------- |
-| 1: Preproduction               | Game Designer     | -                 |
-| 2: Design                      | Game Designer     | -                 |
-| 3: Technical                   | Game Architect    | Game QA           |
-| 4: Production (Planning)       | Game Scrum Master | Game Architect    |
-| 4: Production (Implementation) | Game Developer    | Game Scrum Master |
-| Testing (Any Phase)            | Game QA           | Game Developer    |
+| Phase                          | Primary Agent  | Secondary Agent |
+| ------------------------------ | -------------- | --------------- |
+| 1: Preproduction               | Game Designer  | -               |
+| 2: Design                      | Game Designer  | -               |
+| 3: Technical                   | Game Architect | Game Developer  |
+| 4: Production (Planning)       | Game Developer | Game Architect  |
+| 4: Production (Implementation) | Game Developer | -               |
+| Testing (Any Phase)            | Game Developer | -               |
 
 ### By Task
 
-| Task                             | Best Agent        |
-| -------------------------------- | ----------------- |
-| "I have a game idea"             | Game Designer     |
-| "Help me design my game"         | Game Designer     |
-| "How should I build this?"       | Game Architect    |
-| "What's the technical approach?" | Game Architect    |
-| "Plan our sprints"               | Game Scrum Master |
-| "Create implementation stories"  | Game Scrum Master |
-| "Build this feature"             | Game Developer    |
-| "Review this code"               | Game Developer    |
-| "Set up testing framework"       | Game QA           |
-| "Create test plan"               | Game QA           |
-| "Test performance"               | Game QA           |
-| "Plan a playtest"                | Game QA           |
-| "I'm working solo"               | Game Solo Dev     |
-| "Quick prototype this idea"      | Game Solo Dev     |
-| "Ship this feature fast"         | Game Solo Dev     |
+| Task                             | Best Agent     |
+| -------------------------------- | -------------- |
+| "I have a game idea"             | Game Designer  |
+| "Help me design my game"         | Game Designer  |
+| "How should I build this?"       | Game Architect |
+| "What's the technical approach?" | Game Architect |
+| "Plan our sprints"               | Game Developer |
+| "Create implementation stories"  | Game Developer |
+| "Build this feature"             | Game Developer |
+| "Review this code"               | Game Developer |
+| "Set up testing framework"       | Game Developer |
+| "Create test plan"               | Game Developer |
+| "Test performance"               | Game Developer |
+| "Plan a playtest"                | Game Developer |
+| "I'm working solo"               | Game Solo Dev  |
+| "Quick prototype this idea"      | Game Solo Dev  |
+| "Ship this feature fast"         | Game Solo Dev  |
 
 ## Multi-Agent Collaboration
 
@@ -357,19 +289,15 @@ All agents have access to `party-mode`, which brings multiple agents together fo
 Agents naturally hand off to each other:
 
 ```
-Game Designer → Game Architect → Game Scrum Master → Game Developer
-    ↓                ↓                  ↓                  ↓
-  GDD          Architecture      Sprint/Stories      Implementation
-                     ↓                                     ↓
-                 Game QA ←──────────────────────────── Game QA
-                     ↓                                     ↓
-              Test Strategy                         Automated Tests
+Game Designer → Game Architect → Game Developer → Game Developer
+    ↓                ↓                 ↓                  ↓
+  GDD          Architecture     Sprint/Stories     Implementation + Tests
 ```
 
-Game QA integrates at multiple points:
+Game Developer integrates testing at multiple points within Phase 4:
 
 - After Architecture: Define test strategy
-- During Implementation: Create automated tests
+- During Implementation: Create automated tests alongside features
 - Before Release: Performance and certification testing
 
 ## Project Context
