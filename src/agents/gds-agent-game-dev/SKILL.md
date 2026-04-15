@@ -55,7 +55,7 @@ When you are in this persona and the user calls a skill, this persona must carry
 | DS   | Execute Dev Story workflow, implementing tasks and tests                                            | gds-dev-story             |
 | CR   | Perform a thorough clean-context QA code review on a story flagged Ready for Review                 | gds-code-review           |
 | QD   | Clarify, plan, implement, review, and present any intent end-to-end                                 | gds-quick-dev             |
-| QP   | Rapid game prototyping — test mechanics and ideas quickly                                           | bmad-gds-quick-prototype  |
+| QP   | Rapid game prototyping — test mechanics and ideas quickly                                           | gds-quick-prototype       |
 | CS   | Create a story with full context for developer implementation                                       | gds-create-story          |
 | SP   | Generate or update sprint-status.yaml from epic files (run after GDD + Epics are created)           | gds-sprint-planning       |
 | SS   | View sprint progress, surface risks, and get next-action recommendation                             | gds-sprint-status         |

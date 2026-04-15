@@ -46,7 +46,9 @@ Load config from `{module_config}` and resolve:
 | epics | The completed epic for retrospective | whole: `{planning_artifacts}/*epic*.md`, sharded_index: `{planning_artifacts}/*epic*/index.md`, sharded_single: `{planning_artifacts}/*epic*/epic-{{epic_num}}.md` | SELECTIVE_LOAD |
 | previous_retrospective | Previous epic's retrospective (optional) | `{implementation_artifacts}/**/epic-{{prev_epic_num}}-retro-*.md` | SELECTIVE_LOAD |
 | architecture | System architecture for context | whole: `{planning_artifacts}/*architecture*.md`, sharded: `{planning_artifacts}/*architecture*/*.md` | FULL_LOAD |
-| prd | Product requirements for context | whole: `{planning_artifacts}/*prd*.md`, sharded: `{planning_artifacts}/*prd*/*.md` | FULL_LOAD |
+| gdd | Game Design Document for context (primary design doc in GDS) | whole: `{planning_artifacts}/*gdd*.md`, sharded: `{planning_artifacts}/*gdd*/*.md` | FULL_LOAD |
+| narrative | Narrative design for context (optional, story-driven games) | whole: `{planning_artifacts}/*narrative*.md`, sharded: `{planning_artifacts}/*narrative*/*.md` | SELECTIVE_LOAD |
+| prd | Product requirements for context (optional — GDS PRDs exist for external-tool compatibility) | whole: `{planning_artifacts}/*prd*.md`, sharded: `{planning_artifacts}/*prd*/*.md` | SELECTIVE_LOAD |
 | document_project | Brownfield project documentation (optional) | sharded: `{planning_artifacts}/*.md` | INDEX_GUIDED |
 
 ### Required Inputs
@@ -193,8 +195,8 @@ Amelia (Developer): "Perfect. Epic {{epic_number}} is complete and ready for ret
 </step>
 
 <step n="0.5" goal="Discover and load project documents">
-  <action>Load input files according to the Input Files table in INITIALIZATION. For SELECTIVE_LOAD inputs, load only the epic matching {{epic_number}}. For FULL_LOAD inputs, load the complete document. For INDEX_GUIDED inputs, check the index first and load relevant sections. After discovery, these content variables are available: {epics_content} (selective load for this epic), {architecture_content}, {prd_content}, {document_project_content}</action>
-  <note>After discovery, these content variables are available: {epics_content} (selective load for this epic), {architecture_content}, {prd_content}, {document_project_content}</note>
+  <action>Load input files according to the Input Files table in INITIALIZATION. For SELECTIVE_LOAD inputs, load only the epic matching {{epic_number}}. For FULL_LOAD inputs, load the complete document. For INDEX_GUIDED inputs, check the index first and load relevant sections. After discovery, these content variables are available: {epics_content} (selective load for this epic), {architecture_content}, {gdd_content}, {narrative_content}, {prd_content}, {document_project_content}</action>
+  <note>After discovery, these content variables are available: {epics_content} (selective load for this epic), {architecture_content}, {gdd_content}, {narrative_content}, {prd_content}, {document_project_content}</note>
 </step>
 
 <step n="2" goal="Deep Story Analysis - Extract Lessons from Implementation">
@@ -1034,7 +1036,9 @@ This means Epic {{next_epic_num}} likely needs:
 2. Update affected stories in Epic {{next_epic_num}} to reflect reality
 3. Consider updating architecture or technical specifications if applicable
 4. Hold alignment session with Product Owner before starting Epic {{next_epic_num}}
-   {{#if prd_update_needed}}5. Update PRD sections affected by new understanding{{/if}}
+   {{#if gdd_update_needed}}5. Update GDD sections affected by new understanding{{/if}}
+   {{#if narrative_update_needed}}6. Update Narrative Design sections affected by new understanding{{/if}}
+   {{#if prd_update_needed}}7. Update PRD sections (if a PRD exists for external-tool compatibility){{/if}}
 
 Amelia (Developer): "**Epic Update Required**: YES - Schedule epic planning review session"
 
