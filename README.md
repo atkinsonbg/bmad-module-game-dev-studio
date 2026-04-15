@@ -62,7 +62,7 @@ Think of BMGD as your senior game dev colleague—not a replacement for your ent
 BMGD is installed as a module during BMad Method setup:
 
 ```bash
-npx bmad-method@alpha install
+npx bmad-method install
 ```
 
 Select **Game Dev Studio** from the modules list.
