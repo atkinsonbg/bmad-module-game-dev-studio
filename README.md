@@ -2,6 +2,8 @@
 
 [![Version](https://img.shields.io/npm/v/bmad-game-dev-studio?color=blue&label=version)](https://www.npmjs.com/package/bmad-game-dev-studio)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Python Version](https://img.shields.io/badge/python-%3E%3D3.10-blue?logo=python&logoColor=white)](https://www.python.org)
+[![uv](https://img.shields.io/badge/uv-package%20manager-blueviolet?logo=uv)](https://docs.astral.sh/uv/)
 [![Discord](https://img.shields.io/badge/Discord-Join%20Community-7289da?logo=discord&logoColor=white)](https://discord.gg/gk8jAdXWmj)
 
 **BMGD brings BMad's structured development to game development.** Create working prototypes quickly in Unity, Unreal, Godot—or any engine you choose.
@@ -104,7 +106,14 @@ BMGD: Great choice! Here's what I recommend...
 ## Community
 
 - [Discord](https://discord.gg/gk8jAdXWmj) — Get help from other game devs
+- [YouTube](https://youtube.com/@BMadCode) — Tutorials, master class, and more
+- [X / Twitter](https://x.com/BMadCode)
+- [Website](https://bmadcode.com)
 - [GitHub Issues](https://github.com/bmad-code-org/bmad-module-game-dev-studio/issues) — Report bugs
+
+## Support BMad
+
+BMad is free for everyone and always will be. Star this repo, [buy me a coffee](https://buymeacoffee.com/bmad), or email contact@bmadcode.com for corporate sponsorship.
 
 ## License
 
