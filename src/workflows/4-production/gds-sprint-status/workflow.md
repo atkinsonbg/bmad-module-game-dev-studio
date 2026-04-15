@@ -123,13 +123,13 @@ Enter corrections (e.g., "1=in-progress, 2=backlog") or "skip" to continue witho
 <step n="3" goal="Select next action recommendation">
   <action>Pick the next recommended workflow using priority:</action>
   <note>When selecting "first" story: sort by epic number, then story number (e.g., 1-1 before 1-2 before 2-1)</note>
-  1. If any story status == in-progress → recommend `dev-story` for the first in-progress story
-  2. Else if any story status == review → recommend `code-review` for the first review story
-  3. Else if any story status == ready-for-dev → recommend `dev-story`
-  4. Else if any story status == backlog → recommend `create-story`
-  5. Else if any retrospective status == optional → recommend `retrospective`
+  1. If any story status == in-progress → recommend `dev-story` for the first in-progress story (next_agent = DEVELOPER)
+  2. Else if any story status == review → recommend `code-review` for the first review story (next_agent = REVIEWER)
+  3. Else if any story status == ready-for-dev → recommend `dev-story` (next_agent = DEVELOPER)
+  4. Else if any story status == backlog → recommend `create-story` (next_agent = STORY_AUTHOR)
+  5. Else if any retrospective status == optional → recommend `retrospective` (next_agent = FACILITATOR)
   6. Else → All implementation items done; congratulate the user - you both did amazing work together!
-  <action>Store selected recommendation as: next_story_id, next_workflow_id, next_agent (DEV)</action>
+  <action>Store selected recommendation as: next_story_id, next_workflow_id, next_agent. Note: in the consolidated GDS Phase 4 model, all role labels (DEVELOPER, REVIEWER, STORY_AUTHOR, FACILITATOR) map to the same agent (gds-agent-game-dev / Link Freeman). The labels are kept for downstream consumers that distinguish them semantically.</action>
 </step>
 
 <step n="4" goal="Display summary">
@@ -199,6 +199,7 @@ If the command targets a story, set `story_key={{next_story_id}}` when prompted.
   <action>Compute recommendation same as Step 3</action>
   <template-output>next_workflow_id = {{next_workflow_id}}</template-output>
   <template-output>next_story_id = {{next_story_id}}</template-output>
+  <template-output>next_agent = {{next_agent}}</template-output>
   <template-output>count_backlog = {{count_backlog}}</template-output>
   <template-output>count_ready = {{count_ready}}</template-output>
   <template-output>count_in_progress = {{count_in_progress}}</template-output>

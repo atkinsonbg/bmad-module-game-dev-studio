@@ -2,45 +2,62 @@
 name: gds-validate-gdd
 description: 'Validate a GDD against standards. Use when the user says "validate this GDD" or "run GDD validation".'
 main_config: '{module_config}'
+validateWorkflow: './steps-v/step-v-01-discovery.md'
 ---
 
 # GDD Validate Workflow
 
-**Goal:** Validate existing GDDs against BMAD game-design standards through comprehensive review.
+**Goal:** Validate existing Game Design Documents against BMAD GDS standards through comprehensive review.
 
 **Your Role:** Validation Architect and Quality Assurance Specialist for game design documents.
 
 You will continue to operate with your given name, identity, and communication_style, merged with the details of this role description.
 
-> **Status — structural placeholder.**
->
-> This skill exists to keep GDD validation in the same 3-skill shape as PRD
-> (create/edit/validate). A GDD-specific 13-check validation flow has not been
-> authored yet — see `TODO.md` entry "GDD edit/validate step bodies".
->
-> Until the GDD-specific flow lands, this skill delegates to `gds-validate-prd`.
-> Most validation checks (density, traceability, measurability, completeness,
-> implementation-leakage) apply to any structured planning document. The
-> checks that are specifically PRD-shaped (project-type validation, brief
-> coverage) may flag false positives on a GDD — treat those as informational.
+## WORKFLOW ARCHITECTURE
 
----
+This uses **step-file architecture** for disciplined execution:
 
-## INITIALIZATION
+### Core Principles
+
+- **Micro-file Design**: Each step is a self contained instruction file that is a part of an overall workflow that must be followed exactly
+- **Just-In-Time Loading**: Only the current step file is in memory - never load future step files until told to do so
+- **Sequential Enforcement**: Sequence within the step files must be completed in order, no skipping or optimization allowed
+- **State Tracking**: Document progress in output file frontmatter using `stepsCompleted` array when a workflow produces a document
+- **Append-Only Building**: Build documents by appending content as directed to the output file
+
+### Step Processing Rules
+
+1. **READ COMPLETELY**: Always read the entire step file before taking any action
+2. **FOLLOW SEQUENCE**: Execute all numbered sections in order, never deviate
+3. **WAIT FOR INPUT**: If a menu is presented, halt and wait for user selection
+4. **CHECK CONTINUATION**: If the step has a menu with Continue as an option, only proceed to next step when user selects 'C' (Continue)
+5. **SAVE STATE**: Update `stepsCompleted` in frontmatter before loading next step
+6. **LOAD NEXT**: When directed, read fully and follow the next step file
+
+### Critical Rules (NO EXCEPTIONS)
+
+- 🛑 **NEVER** load multiple step files simultaneously
+- 📖 **ALWAYS** read entire step file before execution
+- 🚫 **NEVER** skip steps or optimize the sequence
+- 💾 **ALWAYS** update frontmatter of output files when writing the final output for a specific step
+- 🎯 **ALWAYS** follow the exact instructions in the step file
+- ⏸️ **ALWAYS** halt at menus and wait for user input
+- 📋 **NEVER** create mental todo lists from future steps
+
+## INITIALIZATION SEQUENCE
 
 ### 1. Configuration Loading
 
-Load and read full config from `{main_config}` and resolve:
+Load and read full config from {main_config} and resolve:
 
-- `project_name`, `planning_artifacts`, `user_name`
-- `communication_language`, `document_output_language`
+- `project_name`, `output_folder`, `planning_artifacts`, `user_name`
+- `communication_language`, `document_output_language`, `game_dev_experience`
 - `date` as system-generated current datetime
 
-### 2. Delegate to gds-validate-prd
+✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the configured `{communication_language}`.
 
-Invoke the `gds-validate-prd` skill, passing the GDD path (typically
-`{planning_artifacts}/gdd.md`) as the target document instead of a PRD.
+### 2. Route to Validate Workflow
 
-When the validation report surfaces, prefix its title with "GDD Validation
-Report" and annotate any false positives stemming from the GDD-vs-PRD schema
-mismatch so the user can distinguish real gaps from structural ones.
+"**Validate Mode: Validating an existing GDD against BMAD GDS standards.**"
+
+Then read fully and follow: `{validateWorkflow}` (steps-v/step-v-01-discovery.md)

@@ -8,7 +8,7 @@ deferred_work_file: '{implementation_artifacts}/deferred-work.md'
 
 - YOU MUST ALWAYS SPEAK OUTPUT in your Agent communication style with the config `{communication_language}`, tailored to `{game_dev_experience}`
 - When `{spec_file}` is set, always write findings to the story file before offering action choices.
-- `decision-needed` findings must be resolved before handling `patch` findings.
+- `decision_needed` findings must be resolved before handling `patch` findings.
 
 ## INSTRUCTIONS
 
@@ -20,7 +20,7 @@ If zero findings remain after triage (all dismissed or none raised): state that 
 
 If `{spec_file}` exists and contains a Tasks/Subtasks section, append a `### Review Findings` subsection. Write all findings in this order:
 
-1. **`decision-needed`** findings (unchecked):
+1. **`decision_needed`** findings (unchecked):
    `- [ ] [Review][Decision] <Title> — <Detail>`
 
 2. **`patch`** findings (unchecked):
@@ -35,12 +35,12 @@ Also append each `defer` finding to `{deferred_work_file}` under a heading `## D
 
 Announce what was written:
 
-> **Code review complete.** <D> `decision-needed`, <P> `patch`, <W> `defer`, <R> dismissed as noise.
+> **Code review complete.** <D> `decision_needed`, <P> `patch`, <W> `defer`, <R> dismissed as noise.
 
 If `{spec_file}` is set, add: `Findings written to the review findings section in {spec_file}.`
 Otherwise add: `Findings are listed above. No story file was provided, so nothing was persisted.`
 
-### 4. Resolve decision-needed findings
+### 4. Resolve decision_needed findings
 
 If `decision_needed` findings exist, present each one with its detail and the options available. The user must decide — the correct fix is ambiguous without their input. Walk through each finding (or batch related ones) and get the user's call. Once resolved, each becomes a `patch`, `defer`, or is dismissed.
 
@@ -55,19 +55,19 @@ If `patch` findings exist (including any resolved from step 4), HALT. Ask the us
 If `{spec_file}` is set, present all three options:
 
 > **How would you like to handle the `<P>` `patch` findings?**
-> 1. **Apply every patch** — fix all of them now, no per-finding confirmation. Defer and decision-needed items are not touched.
+> 1. **Apply every patch** — fix all of them now, no per-finding confirmation. Defer and decision_needed items are not touched.
 > 2. **Leave as action items** — they are already in the story file
 > 3. **Walk through each patch** — show details for each before deciding
 
 If `{spec_file}` is **not** set, present only options 1 and 2 (omit "Leave as action items" — findings were not written to a file):
 
 > **How would you like to handle the `<P>` `patch` findings?**
-> 1. **Apply every patch** — fix all of them now, no per-finding confirmation. Defer and decision-needed items are not touched.
+> 1. **Apply every patch** — fix all of them now, no per-finding confirmation. Defer and decision_needed items are not touched.
 > 2. **Walk through each patch** — show details for each before deciding
 
 **HALT** — I am waiting for your numbered choice. Reply with only the number. Do not proceed until you select an option.
 
-- **Apply every patch**: Apply every patch finding without per-finding confirmation. Do not modify defer or decision-needed items. After all patches are applied, present a summary of changes made. If `{spec_file}` is set, check off the patch items in the story file (leave defer items as-is).
+- **Apply every patch**: Apply every patch finding without per-finding confirmation. Do not modify defer or decision_needed items. After all patches are applied, present a summary of changes made. If `{spec_file}` is set, check off the patch items in the story file (leave defer items as-is).
 - **Leave as action items** (only when `{spec_file}` is set): Done — findings are already written to the story.
 - **Walk through each patch**: Present each finding with full detail, diff context, and suggested fix. After walkthrough, re-offer the applicable options above.
 
@@ -75,7 +75,7 @@ If `{spec_file}` is **not** set, present only options 1 and 2 (omit "Leave as ac
 
 **✅ Code review actions complete**
 
-- Decision-needed resolved: <D>
+- decision_needed resolved: <D>
 - Patches handled: <P>
 - Deferred: <W>
 - Dismissed: <R>
@@ -86,7 +86,7 @@ Skip this section if `{spec_file}` is not set.
 
 #### Determine new status based on review outcome
 
-- If all `decision-needed` and `patch` findings were resolved (fixed or dismissed) AND no unresolved HIGH/MEDIUM issues remain: set `{new_status}` = `done`. Update the story file Status section to `done`.
+- If all `decision_needed` and `patch` findings were resolved (fixed or dismissed) AND no unresolved HIGH/MEDIUM issues remain: set `{new_status}` = `done`. Update the story file Status section to `done`.
 - If `patch` findings were left as action items, or unresolved issues remain: set `{new_status}` = `in-progress`. Update the story file Status section to `in-progress`.
 
 Save the story file.
