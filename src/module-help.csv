@@ -14,9 +14,7 @@ Game Dev Studio,gds-validate-gdd,Validate GDD,VG,Validate an existing GDD agains
 Game Dev Studio,gds-edit-gdd,Edit GDD,EG,Improve and enhance an existing GDD. Delegates to gds-edit-prd until GDD-specific edit flow is authored.,,,2-design,gds-validate-gdd,,false,planning_artifacts,updated gdd
 Game Dev Studio,gds-create-narrative,Narrative Design,ND,Create comprehensive narrative documentation including story structure character arcs and world-building. Use for story-driven games.,,,2-design,gds-create-gdd,,false,planning_artifacts,narrative design
 Game Dev Studio,gds-create-ux-design,Create UX Design,CU,"Guidance through realizing the plan for your game UX/UI, strongly recommended if UI is a primary piece of the proposed game.",,,2-design,gds-create-gdd,,false,planning_artifacts,ux design
-Game Dev Studio,gds-create-prd,Create PRD,CP,Create a PRD from GDD or from scratch for use with external tools like bmad-assist.,,,2-design,gds-create-gdd,,false,planning_artifacts,prd
-Game Dev Studio,gds-validate-prd,Validate PRD,VP,Validate PRD against standards for external tool compatibility.,,,2-design,gds-create-prd,,false,planning_artifacts,prd validation report
-Game Dev Studio,gds-edit-prd,Edit PRD,EP,Improve and enhance an existing PRD.,,,2-design,gds-validate-prd,,false,planning_artifacts,updated prd
+Game Dev Studio,gds-prd,Game PRD,PRD,"Create, update, or validate a game project's PRD — often derived from a GDD or prepared for external-tool integration.",,,2-design,gds-create-gdd,,false,planning_artifacts,prd
 Game Dev Studio,gds-generate-project-context,Project Context,PC,Create optimized project-context.md for chosen agentic tool consistency.,,,3-technical,,,false,,
 Game Dev Studio,gds-game-architecture,Game Architecture,GA,Produce a scale-adaptive game architecture with engine systems networking and technical design.,,,3-technical,,,true,planning_artifacts,game architecture
 Game Dev Studio,gds-create-epics-and-stories,Create Epics and Stories,CE,Create the Epics and Stories listing from GDD requirements. These are the specs that drive development.,,,3-technical,gds-game-architecture,,true,planning_artifacts,epics and stories
