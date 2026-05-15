@@ -144,7 +144,7 @@ Certain genres carry conventions that must be documented:
 
 ## Document Structure (Markdown, Human-Readable)
 
-### Required Sections (canonical gds-create-gdd schema)
+### Required Sections (canonical gds-gdd schema)
 
 1. **Executive Summary** - Core concept, target audience, USPs
 2. **Goals and Context** - Project goals, background, rationale
