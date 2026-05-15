@@ -25,6 +25,7 @@ Game Dev Studio,gds-create-story,Create Story,CS,Create Story with comprehensive
 Game Dev Studio,gds-dev-story,Dev Story,DS,Execute Dev Story workflow implementing tasks and tests.,,,4-production,gds-create-story,,true,,
 Game Dev Studio,gds-code-review,Code Review,CR,Perform thorough clean context QA code review on stories flagged Ready for Review.,,,4-production,gds-dev-story,,false,,
 Game Dev Studio,gds-retrospective,Retrospective,ER,Facilitate team retrospective after a game development epic is completed.,,,4-production,gds-code-review,,false,implementation_artifacts,retrospective
+Game Dev Studio,gds-investigate,Investigate,IN,"Forensic case investigation with evidence-graded findings — trace a bug, reconstruct an incident, or model unfamiliar code.",,,4-production,,,false,implementation_artifacts,investigation case file
 Game Dev Studio,gds-test-automate,Test Automate,TA,Generate automated game tests.,,,gametest,,,false,,
 Game Dev Studio,gds-e2e-scaffold,E2E Scaffold,ES,Scaffold E2E testing infrastructure.,,,gametest,gds-test-automate,,false,,
 Game Dev Studio,gds-playtest-plan,Playtest Plan,PP,Create structured playtesting plan.,,,gametest,gds-e2e-scaffold,,false,planning_artifacts,playtest plan

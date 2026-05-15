@@ -124,6 +124,11 @@ description = "Review test quality and coverage"
 skill = "gds-test-review"
 
 [[agent.menu]]
+code = "IN"
+description = "Forensic case investigation — trace a bug, reconstruct an incident, or model unfamiliar code"
+skill = "gds-investigate"
+
+[[agent.menu]]
 code = "AE"
 description = "Advanced elicitation — challenge the LLM to get better results"
 skill = "bmad-advanced-elicitation"
