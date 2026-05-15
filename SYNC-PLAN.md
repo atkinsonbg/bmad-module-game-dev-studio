@@ -1,260 +1,197 @@
-# Game-Dev Studio Sync Plan — 2026-04-14
+# Game-Dev Studio Sync Plan — 2026-05-15
 
-Syncing `bmad-module-game-dev-studio` against `bmad-code-org/BMAD-METHOD@main` (`6b964acd`, post-v6.3.0).
+Syncing `bmad-module-game-dev-studio` (**v0.4.0**) against `bmad-code-org/BMAD-METHOD@main` (`5090cfb0`, post-v6.6.0).
 
-## Architectural guardrail — DO NOT touch
+> Supersedes the 2026-04-14 plan (the v6.3.0 sync — completed, recorded in `CHANGELOG.md` v0.3.0).
 
-Upstream lives under `src/bmm-skills/{1-analysis,2-plan-workflows,3-solutioning,4-implementation}/` plus `src/core-skills/`. Game-dev lives under `src/workflows/{1-preproduction,2-design,3-technical,4-production,gametest,gds-quick-flow,gds-document-project}/` plus `src/agents/` and `src/gametest/`.
+## Context — this is NOT another architecture migration
 
-**This sync preserves game-dev's top-level organization.** We port *content and skill-directory shape* within the existing tree; we do not relocate into `src/bmm-skills/`.
+BMGD **v0.4.0** already adopted the BMAD-METHOD `customize.toml` architecture (PRs #22 / #23 / #25):
+
+- All 5 agents + 31 workflow skills are on the integrated `SKILL.md` + `customize.toml` pattern.
+- `workflow.md` and `bmad-skill-manifest.yaml` are gone.
+- `module.yaml` carries the `agents:` roster; `module-help.csv` is on the 13-column schema.
+- Skills read config from `{project-root}/_bmad/gds/config.yaml`.
+
+BMAD-METHOD was updated 6.3.0 → 6.6.0 (`5090cfb0`) in this session. BMGD v0.4.0 froze its *content* at v6.3.0 and adopted the architecture independently (it tracks the v6.4.0 `customize.toml` design). **This sync covers only the content delta v6.3.0 → v6.6.0+** — three content ports, three new/consolidated skills, and a catalog rename.
+
+## Architectural guardrail — preserved
+
+BMGD keeps its top-level organization: `src/workflows/{1-preproduction,2-design,3-technical,4-production,gametest,gds-quick-flow}/` + `src/agents/`. We port content and skill-directory shape within that tree — no relocation into `src/bmm-skills/`.
+
+## Decisions locked 2026-05-15
+
+1. **PRD/GDD consolidation** (user-approved). Collapse `gds-create-prd` + `gds-edit-prd` + `gds-validate-prd` → single `gds-prd`, and `gds-create-gdd` + `gds-edit-gdd` + `gds-validate-gdd` → single `gds-gdd`, mirroring upstream `bmad-prd`'s consolidated intent-detection pattern (create / update / validate modes in one skill).
+2. **No deprecation shims** _(approved 2026-05-15)_. Upstream keeps `bmad-create/edit/validate-prd` as forwarding stubs for public backward-compat (v7.0 removal). BMGD is private and pre-1.0 — the six old trio directories are removed cleanly.
+3. **gds-investigate**: port upstream `bmad-investigate` with light game-adaptation (path / agent / config rewrites only). Place under `4-production/`. Wire into `gds-agent-game-dev` menu as code `IN`.
+4. **gds-customize**: NOT ported. `bmad-customize` is a `core-skills` skill; BMGD installs alongside `core`, which supplies it (and the `resolve_*.py` scripts). _[Verify in Phase 6: confirm BMGD cannot install fully standalone without `core`.]_
+5. **project_name**: stays module-level in BMGD `module.yaml` ("What is the name of your game project?"). Upstream moved BMM's `project_name` to `[core]`; BMGD's is an intentional game-specific prompt — keep as-is.
+
+## Real content delta — v6.3.0 → v6.6.0+
+
+Pure-architecture commits (`ffdd9bc6`, `87292cd8`, `4405b817`, `e7a213ed`) are excluded — BMGD v0.4.0 already has that work. The genuine content changes:
+
+| Upstream commit | Change | BMGD target | Phase |
+|---|---|---|---|
+| `1ad1f91e` (#1826) | Brownfield epic scoping — file-overlap detection + Implementation Efficiency principle + design-completeness gate | `gds-create-epics-and-stories` | 4 |
+| `c29b72ec` (#2274) | create-story reads UPDATE-marked files before generating dev notes | `gds-create-story` | 4 |
+| `815600e4` (#2347) | architecture `step-07` validation checklist no longer ships pre-primed | `gds-game-architecture` | 4 |
+| `#1927` | PRD no longer silently de-scopes; explicit confirmation before scope reduction | folded into `gds-prd` | 1 |
+| `c52c9b5b` (post-6.6) | new consolidated `bmad-prd` skill | → `gds-prd` | 1 |
+| `24a81706` (post-6.6) | new `bmad-investigate` skill | → `gds-investigate` | 3 |
+| `e36f219c` (#2360) | catalog columns `after`/`before` → `preceded-by`/`followed-by` | `module-help.csv` | 5 |
+| `#2286` | `team: software-development` on agents | agent roster | 5 |
+
+Skills with **only** architecture commits in the v6.3→v6.6 range — no content port needed: `bmad-code-review`, `bmad-sprint-planning`, `bmad-sprint-status`, `bmad-dev-story`, `bmad-retrospective`, `bmad-correct-course`, `bmad-check-implementation-readiness`.
+
+## Pre-existing issues surfaced (not upstream-driven)
+
+`module-help.csv` lists **3 phantom skills with no directories**: `gds-market-research`, `gds-technical-research`, `gds-quick-prototype`. The `gds-agent-game-dev` menu also has code `QP` → phantom `gds-quick-prototype`. Resolved in Phase 5 _(approved 2026-05-15)_: remove the rows + the `QP` menu entry and record "build research + prototype skills" in `TODO.md`, rather than building three skills mid-sync.
 
 ---
 
-## Decisions locked in 2026-04-14
-
-**Agents (Phase 4 mirror):** Merge `gds-agent-game-qa` and `gds-agent-game-scrum-master` into `gds-agent-game-dev`. Upstream collapsed to a single Developer agent (commits `48c2324b` / `003c979d`) — Phase 4 of game-dev will follow. Phases 1–3 agents (designer, architect, solo-dev, tech-writer) remain distinct.
-
-**quick-dev:** Delete `gds-quick-dev` and `gds-quick-spec` entirely. Port upstream `bmad-quick-dev` 1:1 as the replacement. No chain, no overlap-preservation.
-
-**gametest relocation:** Move `src/gametest/` (the knowledge base + `qa-index.csv`) into `src/agents/gds-agent-game-dev/gametest/`. Reason: `_bmad-output/` is being deprecated as a runtime location; knowledge the dev agent uses should live with the dev agent. `src/workflows/gametest/` (the 7 test workflows) stays where it is.
-
----
-
-## Phase 1 — quick-dev full replacement + quick-flow cleanup
-
-### Scope
-
-- **Delete** `src/workflows/gds-quick-flow/gds-quick-dev/` (all current content — divergent enough that no salvage is useful)
-- **Delete** `src/workflows/gds-quick-flow/gds-quick-spec/` (redundant once upstream's bmad-quick-dev is ported; upstream absorbs spec generation into `step-02-plan`)
-- **Delete** `src/workflows/gds-quick-flow/gds-quick-dev-new-preview/` (already-approved cleanup)
-- **Port** upstream `bmad-quick-dev` 1:1 to a new `src/workflows/gds-quick-flow/gds-quick-dev/`
+## Phase 1 — PRD consolidation → `gds-prd`
 
 ### Upstream source
 
-`src/bmm-skills/4-implementation/bmad-quick-dev/` — 11 files, flat layout:
-- `SKILL.md`, `workflow.md`, `spec-template.md`, `step-oneshot.md`
-- `step-01-clarify-and-route.md`, `step-02-plan.md`, `step-03-implement.md`, `step-04-review.md`, `step-05-present.md`
-- `compile-epic-context.md`, `sync-sprint-status.md`
+`src/bmm-skills/2-plan-workflows/bmad-prd/` (BMAD-METHOD):
 
-### Adaptation work during port
+```
+bmad-prd/
+├── SKILL.md                                  # intent detection → create/update/validate modes
+├── customize.toml                            # [workflow] + prd_template, validation_checklist, output_dir, external_handoffs…
+├── assets/{prd-template.md, prd-validation-checklist.md,
+│           validation-report-template.html, headless-schemas.md}
+├── references/{facilitation-guide.md, headless.md, validation-render.md}
+└── scripts/render-validation-html.py
+```
 
-Copy upstream files as-is, then rewrite references for game-dev context:
-- `_bmad/bmm/` → `_bmad/gds/` config paths
-- `bmad-agent-dev` → `gds-agent-game-dev`
-- Any `{module_root}` resolutions to point at game-dev module structure
-- Preserve upstream step names, structure, and framing ("hardened, reviewable artifact")
+The SKILL.md detects intent from the user's message (`create` / `update` / `validate`), then branches to the matching operating mode. Validate mode spawns a subagent and renders an HTML report; no `steps/` subdirectory.
 
-After port, verify `gds-quick-flow/` only contains the new `gds-quick-dev/`. The flow folder may eventually collapse to just the skill itself — flag in `TODO.md` if it does.
+### Current BMGD shape (to be replaced)
+
+- `2-design/gds-create-prd/` — `steps-c/` (12 steps), `templates/`, `data/`
+- `2-design/gds-edit-prd/` — `steps-e/` (5 steps), `data/`
+- `2-design/gds-validate-prd/` — `steps-v/` (13 steps), `data/`
+
+### Plan
+
+1. Create `src/workflows/2-design/gds-prd/` modeled structurally on upstream `bmad-prd` (compact: `SKILL.md` + `customize.toml` + `assets/` + `references/` + `scripts/`).
+2. Port `assets/`, `references/`, `scripts/render-validation-html.py` from upstream.
+3. **Harvest game-specific content** from BMGD's PRD trio (`steps-c/`, `steps-e/`, `steps-v/`, `templates/`, `data/`) — any game-PRD terminology, game-domain checks, or sections that diverge from upstream — and fold it into `gds-prd`'s assets/references. Do not lose game-specific PRD content; the new structure is the container, the BMGD trio is the source of game adaptation.
+4. Adaptation rewrites: `_bmad/bmm/` → `_bmad/gds/` config path; `bmad-agent-*` → `gds-agent-*`; preserve upstream intent-detection framing.
+5. Delete `gds-create-prd/`, `gds-edit-prd/`, `gds-validate-prd/`.
+6. Update the agent menu that exposes PRD (designer / solo-dev) — three trio menu codes collapse to one `gds-prd` entry.
 
 ### Phase 1 verification
 
-- `npm run lint:md` clean
-- `gds-quick-dev` resolves via installer (manual `npx bmad-method install` smoke test)
-- Grep confirms zero refs to `gds-quick-spec` or `gds-quick-dev-new-preview` remain in `src/`
+- `gds-prd` resolves via installer smoke test; `npm run lint:md` clean.
+- Grep confirms zero refs to `gds-create-prd` / `gds-edit-prd` / `gds-validate-prd` remain in `src/`.
+- All three intent modes (create/update/validate) are reachable from `gds-prd/SKILL.md`.
 
 ---
 
-## Phase 2 — PRD + GDD skill split
+## Phase 2 — GDD consolidation → `gds-gdd`
 
-### Upstream shape
+There is **no upstream GDD skill** — `gds-gdd` is modeled on the `gds-prd` built in Phase 1, adapted to game-design-document content. This is the largest net-new piece: `gds-edit-gdd` and `gds-validate-gdd` are currently thin stubs that delegate to the PRD counterparts, so consolidation actually *implements* real update/validate modes for the GDD for the first time.
 
-```
-src/bmm-skills/2-plan-workflows/
-├── bmad-create-prd/     (SKILL.md, workflow.md, steps-c/, data/, templates/)
-├── bmad-edit-prd/       (SKILL.md, workflow.md, steps-e/, data/prd-purpose.md) ← NEW data file
-└── bmad-validate-prd/   (SKILL.md, workflow.md, steps-v/)
-```
+### Current BMGD shape (to be replaced)
 
-`bmad-edit-prd` just gained new step files (`step-e-01-discovery.md`, `step-e-01b-legacy-conversion.md`, `step-e-02-review.md`, `step-e-03-edit.md`, `step-e-04-complete.md`) and a new `data/prd-purpose.md` reference. Upstream `bmad-create-prd/steps-c/step-08-scoping.md` and `step-11-polish.md` also changed.
-
-### Game-dev current shape
-
-**PRD is consolidated** at `src/workflows/2-design/create-prd/`:
-```
-create-prd/
-├── bmad-skill-manifest.yaml   (no SKILL.md!)
-├── data/, templates/
-├── steps-c/, steps-e/, steps-v/
-├── workflow-create-prd.md
-├── workflow-edit-prd.md
-└── workflow-validate-prd.md
-```
-
-**GDD is a single skill** at `src/workflows/2-design/gds-create-gdd/` with `steps/` (14 step files) — no edit or validate variant.
+- `2-design/gds-create-gdd/` — `steps-c/` (14 steps), `templates/`, `game-types/` (**24 genre guides**), `game-types.csv`, `checklist.md`
+- `2-design/gds-edit-gdd/` — stub, `steps-e/`, `data/`
+- `2-design/gds-validate-gdd/` — stub, `steps-v/`, `data/` (incl. `genre-complexity.csv`)
 
 ### Plan
 
-**2a. Split PRD into 3 skill dirs:**
-
-```
-src/workflows/2-design/
-├── gds-create-prd/     (from workflow-create-prd.md + steps-c/ + shared data/templates)
-├── gds-edit-prd/       (from workflow-edit-prd.md + steps-e/; port upstream step-e-* updates + prd-purpose.md)
-└── gds-validate-prd/   (from workflow-validate-prd.md + steps-v/)
-```
-
-Each gets `SKILL.md` + `bmad-skill-manifest.yaml`. Shared `data/` and `templates/` stay deduplicated where possible (symlink or copy-with-note).
-
-**2b. Mirror the same split for GDD** (user-approved — "GDD is used as PRD by default in gds"):
-
-```
-src/workflows/2-design/
-├── gds-create-gdd/     (existing, rename steps/ → steps-c/ for consistency)
-├── gds-edit-gdd/       (NEW — model on gds-edit-prd; port step-e pattern, adapt to game-design content)
-└── gds-validate-gdd/   (NEW — model on gds-validate-prd; adapt AC and quality checks to GDD structure)
-```
-
-This is the **biggest net-new content** in the sync. `gds-edit-gdd` and `gds-validate-gdd` do not exist today.
-
-**2c. Port upstream content changes:**
-- `bmad-create-prd/steps-c/step-08-scoping.md` (93 line change) and `step-11-polish.md` → into `gds-create-prd/steps-c/` equivalents
-- `bmad-edit-prd/data/prd-purpose.md` (197 new lines) → into `gds-edit-prd/data/` (and optionally `gds-edit-gdd/data/gdd-purpose.md` as a parallel)
-- All `step-e-*` file updates → `gds-edit-prd/steps-e/`
+1. Create `src/workflows/2-design/gds-gdd/` with the same compact shape as `gds-prd`: `SKILL.md` (intent detection: create / update / validate) + `customize.toml` + `assets/` + `references/` + `scripts/`.
+2. Move the GDD's irreplaceable game assets into `gds-gdd/assets/` (or `references/`): the **24 genre guides** (`game-types/`), `game-types.csv`, `genre-complexity.csv`, the GDD template, and `checklist.md`.
+3. Harvest game-design content from `gds-create-gdd/steps-c/` (14 steps) into the create mode; build real update/validate modes (the old stubs only delegated) modeled on `gds-prd`'s, adapted to GDD structure (genre-compliance, game-type validation instead of domain/project-type).
+4. Delete `gds-create-gdd/`, `gds-edit-gdd/`, `gds-validate-gdd/`.
+5. Update the designer agent menu — GDD trio codes collapse to one `gds-gdd` entry.
 
 ### Phase 2 verification
 
-- All three PRD skills resolve via installer
-- GDD edit + validate stubs compile (OK if step bodies are initially lean — flag in `TODO.md`)
+- `gds-gdd` resolves; the 24 genre guides are reachable from the create mode.
+- update/validate modes are real (no delegation-to-PRD stub language remains).
+- Grep confirms zero refs to the three old GDD dirs.
 
 ---
 
-## Phase 2.5 — Agent merge + gametest relocation
+## Phase 3 — New skill: `gds-investigate`
 
-### Agent merge
+### Upstream source
 
-Goal: mirror upstream's single-Developer-agent model for Phase 4 roles.
-
-1. **Capabilities audit** — read:
-   - `src/agents/gds-agent-game-qa/SKILL.md` (Quinn-equivalent; owns QA knowledge lookup)
-   - `src/agents/gds-agent-game-scrum-master/SKILL.md` (Bob-equivalent; owns sprint/story ceremony)
-   - Upstream `bmad-agent-dev/SKILL.md` post-merge (shows how QA was absorbed — party-mode and generate-e2e-tests references preserved)
-2. **Merge into `src/agents/gds-agent-game-dev/SKILL.md`:**
-   - Keep Link Freeman persona; append QA + SM capability sections under `## Capabilities`
-   - Pull QA-specific critical actions (knowledge-fragment lookup via `gametest/qa-index.csv` — see relocation below)
-   - Pull SM-specific critical actions (sprint-status sync, story-file ownership)
-   - Update `description` frontmatter to note combined role without losing Link Freeman trigger phrase
-3. **Delete** `src/agents/gds-agent-game-qa/` and `src/agents/gds-agent-game-scrum-master/` directories entirely
-4. **Global reference sweep:**
-   - grep `src/` for `gds-agent-game-qa` and `gds-agent-game-scrum-master` — redirect every hit to `gds-agent-game-dev`
-   - Expected hit sites: workflows in `4-production/` (sprint planning/status/retro reference SM), `gametest/` workflows (reference QA), `module-help.csv`, `bmad-skill-manifest.yaml` files
-5. **`module.yaml` + `module-help.csv`** — remove dropped agents; update agent registry
-
-### gametest relocation
-
-Move knowledge base from `src/gametest/` to `src/agents/gds-agent-game-dev/gametest/`.
-
-1. Move:
-   - `src/gametest/knowledge/*.md` (17 files) → `src/agents/gds-agent-game-dev/gametest/knowledge/`
-   - `src/gametest/qa-index.csv` → `src/agents/gds-agent-game-dev/gametest/qa-index.csv`
-2. Delete empty `src/gametest/` directory
-3. **Path rewrites** — grep `src/` for:
-   - `{module_root}/gametest/` → `{skill_root}/gametest/` (or `{agents_root}/gds-agent-game-dev/gametest/` depending on which variable resolves correctly at install time — verify with upstream's path-resolver convention)
-   - `gametest/qa-index.csv` (bare) → new path
-   - `gametest/knowledge/` (bare) → new path
-   - Known hit sites to verify: `src/workflows/gametest/gds-test-design/test-design-template.md:205`, former `gds-agent-game-qa/SKILL.md:30,33` content now living in `gds-agent-game-dev/SKILL.md`
-4. `_bmad-output` references (currently 1 hit in `gds-code-review/workflow.md:20`) — review with user in Phase 4 whether to remove the explicit exclusion comment since `_bmad-output` is being deprecated (leave for now; it's informational)
-
-### Phase 2.5 verification
-
-- No lingering refs to `gds-agent-game-qa`, `gds-agent-game-scrum-master` in `src/` (grep exits with no matches)
-- No lingering refs to `src/gametest/` or `{module_root}/gametest/` at the old location
-- `gds-agent-game-dev/SKILL.md` parses; frontmatter valid
-- Installer smoke test loads combined agent + gametest knowledge correctly
-
----
-
-## Phase 3 — Production-phase steps/ backfill
-
-### Current state (game-dev, no `steps/` subdir)
-
-- `src/workflows/4-production/gds-code-review/`
-- `src/workflows/4-production/gds-correct-course/`
-- `src/workflows/4-production/gds-create-story/`
-- `src/workflows/4-production/gds-dev-story/`
-- `src/workflows/4-production/gds-retrospective/`
-- `src/workflows/4-production/gds-sprint-planning/`
-- `src/workflows/4-production/gds-sprint-status/`
-
-### Upstream source to port from
-
-- `bmad-code-review/steps/{step-01-gather-context.md, step-02-review.md, step-04-present.md}` — recently updated
-- `bmad-correct-course/workflow.md` + `checklist.md` — updated
-- `bmad-retrospective/workflow.md` — updated (268-line change; substantial rewrite)
-- `bmad-sprint-planning/workflow.md`, `bmad-sprint-status/workflow.md` — minor
-- `bmad-create-story`, `bmad-dev-story` — no `steps/` upstream either (skip)
+`src/bmm-skills/4-implementation/bmad-investigate/` — `SKILL.md` (forensic case-file workflow), `customize.toml`, `references/case-file-template.md`.
 
 ### Plan
 
-For each game-dev skill above, create a `steps/` subdir matching upstream's step decomposition. Copy step file contents, rewrite references to:
-- `_bmad/bmm/...` → `_bmad/gds/...`
-- `bmad-agent-dev` → `gds-agent-game-dev`
-- `gds-agent-game-qa` / `gds-agent-game-scrum-master` refs → `gds-agent-game-dev` (per Phase 2.5 — should already be clean by the time Phase 3 runs)
-- Any terminology swap (story → game-story where appropriate)
-
-Update each `workflow.md` to reference the new step files if it currently inlines everything.
+1. Create `src/workflows/4-production/gds-investigate/` as a 1:1 port of `bmad-investigate`.
+2. Light adaptation only: `_bmad/bmm/` → `_bmad/gds/`; `case_file_subdir` default left as `investigations`; no game-specific rewrite of the investigation methodology (it is domain-neutral).
+3. Add menu code `IN` to `gds-agent-game-dev/customize.toml` (`[[agent.menu]]`, `skill = "gds-investigate"`).
+4. Add a `module-help.csv` row.
 
 ### Phase 3 verification
 
-- `npm test` in game-dev repo passes
-- Each skill's `workflow.md` correctly references its new `steps/*.md` via relative paths
+- `gds-investigate` resolves; `case-file-template.md` reference resolves.
+- `gds-agent-game-dev` menu renders the new `IN` entry.
 
 ---
 
-## Phase 4 — Manifest + module.yaml audit
+## Phase 4 — Content ports into existing skills
 
-### Scope
+For each, diff the upstream commit and port the *content* delta into BMGD's already-migrated skill (steps live in the new `customize.toml`-era structure).
 
-- `src/module.yaml` — compare schema against upstream's `src/bmm-skills/module.yaml` and `src/core-skills/module.yaml`; harmonize field set
-- Every `bmad-skill-manifest.yaml` under `src/workflows/**/` and `src/agents/**/` — validate against upstream skill-manifest schema (whatever `tools/validate-skills.js` in upstream expects)
-- `src/module-help.csv` — regenerate from skill frontmatter (post-agent-merge; drops QA + SM entries)
-- Any dangling references to `bmad-agent-qa` / `bmad-agent-sm` / `bmad-init` in copied content → clean up
-
-### Plan
-
-1. Run upstream's `tools/validate-skills.js` against game-dev `src/` (adapt path config)
-2. Regenerate `module-help.csv` from SKILL.md frontmatter
-3. Diff `module.yaml` schema against upstream; add missing fields with game-dev values
-4. grep game-dev for `bmad-agent-qa`, `bmad-agent-sm`, `bmad-init` (removed in #2159) — clean up refs
+1. **`gds-create-epics-and-stories`** ← `1ad1f91e` (#1826): brownfield epic-scoping — file-overlap detection between epics, the Implementation Efficiency principle, and the design-completeness gate.
+2. **`gds-create-story`** ← `c29b72ec` (#2274): read every UPDATE-marked file before generating dev notes (brownfield stories preserve current behavior).
+3. **`gds-game-architecture`** ← `815600e4` (#2347): `step-07` validation checklist no longer ships pre-checked; status field templated against actual completion. _(BMGD's architecture skill is `gds-game-architecture`; locate the equivalent validation step.)_
+4. **Agents** ← `#2286`: ensure `team: software-development` (or a game-dev team value) is set on each agent in the `module.yaml` roster.
 
 ### Phase 4 verification
 
-- `npm run lint` + `npm run lint:md` + `npm run format:check` clean
-- Validate-skills script exits 0
+- Each ported change is present and game-context-correct (paths, agent refs, terminology).
+- `npm test` (lint + lint:md + format:check) passes in BMGD.
 
 ---
 
-## Phase 5 — Cleanup
+## Phase 5 — Catalog + config + cleanup
 
-- `src/workflows/gds-quick-flow/gds-quick-dev-new-preview/`, `gds-quick-spec/`, and original `gds-quick-dev/` should already be gone from Phase 1
-- `src/agents/gds-agent-game-qa/` and `src/agents/gds-agent-game-scrum-master/` should already be gone from Phase 2.5
-- `src/gametest/` should already be gone from Phase 2.5
-- Delete stale `install-success-message.md`, `codex-review.md` at repo root if superseded (check git log first)
-- Update `TODO.md` with any known-deferred items (incomplete GDD edit/validate step bodies, etc.)
-- Update `CHANGELOG.md` with sync summary
+1. **`module-help.csv`**: rename header columns `after` → `preceded-by`, `before` → `followed-by` (upstream #2360). Update all rows.
+2. Update `module-help.csv` for the structural changes: 3 PRD rows → 1 (`gds-prd`); 3 GDD rows → 1 (`gds-gdd`); add `gds-investigate`.
+3. **Phantom-skill cleanup**: remove the `gds-market-research`, `gds-technical-research`, `gds-quick-prototype` rows and the `QP` menu code from `gds-agent-game-dev`; record "build research + prototype skills" in `TODO.md`.
+4. `module.yaml`: confirm `agents:` roster has `team` per agent; confirm `project_name` decision (locked: stays module-level).
+
+### Phase 5 verification
+
+- `module-help.csv` skill column matches the set of `SKILL.md` directories on disk exactly (no phantoms).
+- Header is `preceded-by`/`followed-by`.
 
 ---
 
-## Out of scope (deferred)
+## Phase 6 — Validation + release
 
-- Restructuring `src/workflows/` → `src/bmm-skills/` (game-dev's top-level org is intentional)
-- Adding `gds-help` and `gds-party-mode` (user skipped)
-- Editorial/adversarial review skills (`bmad-editorial-review-*`, `bmad-review-adversarial-general`, `bmad-review-edge-case-hunter`) — not requested; flag in `TODO.md` for future
-- Full `src/workflows/gametest/` relocation into the dev agent (out of scope for this sync; only the knowledge-base `src/gametest/` moves)
-- Whether `gds-quick-flow/` parent directory survives long-term (flag for follow-up)
+1. `npm test` in BMGD (lint + lint:md + format:check) — clean.
+2. Run BMAD-METHOD's `tools/validate-skills.js` against BMGD `src/` (adapt path config) — exits 0.
+3. Smoke test: `npx bmad-method install` into a scratch directory — confirm `gds-prd`, `gds-gdd`, `gds-investigate` install and resolve; confirm the `resolve_*.py` scripts land in `_bmad/scripts/` (validates Decision 4 — `core` supplies them).
+4. `CHANGELOG.md` entry; version bump `0.4.0` → `0.5.0`.
+5. Update root `CLAUDE.md` ("Last reviewed" note, PRD/GDD trio → consolidated description) and `TODO.md`.
 
 ---
 
 ## Execution order + checkpoints
 
-All pre-flight decisions are locked in. Recommend phase-by-phase execution with a commit between each:
+Phase-by-phase with a commit between each; each phase independently revertible via `git revert`.
 
-1. Phase 1 (quick-dev full replacement + delete quick-spec + delete new-preview) — commit
-2. Phase 2a (PRD split into 3 skill dirs) — commit
-3. Phase 2b (GDD split into 3 skill dirs) — commit
-4. Phase 2c (port upstream PRD content updates — step-08-scoping, step-11-polish, step-e-*, prd-purpose.md) — commit
-5. Phase 2.5 (agent merge QA+SM→dev; relocate `src/gametest/` into `gds-agent-game-dev/gametest/`) — commit
-6. Phase 3 (production steps/ backfill; agent refs already clean from 2.5) — commit
-7. Phase 4 (manifest audit + module-help.csv regen + final cleanup) — commit
-8. Full `npm test` run + manual `npx bmad-method install` smoke test into a scratch dir → push
+1. Phase 1 — PRD consolidation → `gds-prd` — commit
+2. Phase 2 — GDD consolidation → `gds-gdd` — commit
+3. Phase 3 — `gds-investigate` port — commit
+4. Phase 4 — content ports (epics-and-stories, create-story, architecture, agent `team`) — commit
+5. Phase 5 — catalog + config + phantom cleanup — commit
+6. Phase 6 — full `npm test` + validate-skills + install smoke test → CHANGELOG + version bump → commit → push
 
-Each phase is independently revertible via `git revert`.
+## Out of scope (deferred)
+
+- Building `gds-market-research`, `gds-technical-research`, `gds-quick-prototype` (phantom rows removed; logged to `TODO.md`).
+- Porting `bmad-customize` (relies on `core`).
+- `bmad-product-brief` refactor (`#2370`/`#2371`) — BMGD's `gds-create-game-brief` is substantially game-specific; evaluate in a later sync.
+- Collapsing the `gds-quick-flow/` wrapper directory (existing `TODO.md` item).
+- Installer/platform changes (v6.5.0 42-platform support, channel resolution) — BMGD ships no installer; consumed via the `bmad-method` package.
