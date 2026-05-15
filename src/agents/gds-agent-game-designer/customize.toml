@@ -52,8 +52,3 @@ skill = "gds-gdd"
 code = "ND"
 description = "Design narrative elements and story"
 skill = "gds-create-narrative"
-
-[[agent.menu]]
-code = "QP"
-description = "Rapid game prototyping — test mechanics and ideas quickly"
-skill = "gds-quick-prototype"

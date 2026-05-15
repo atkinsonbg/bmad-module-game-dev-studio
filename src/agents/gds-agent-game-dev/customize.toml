@@ -59,11 +59,6 @@ description = "Clarify, plan, implement, review, and present any intent end-to-e
 skill = "gds-quick-dev"
 
 [[agent.menu]]
-code = "QP"
-description = "Rapid game prototyping — test mechanics and ideas quickly"
-skill = "gds-quick-prototype"
-
-[[agent.menu]]
 code = "CS"
 description = "Create a story with full context for developer implementation"
 skill = "gds-create-story"
