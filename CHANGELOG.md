@@ -1,5 +1,32 @@
 # CHANGELOG
 
+## v0.5.0 - May 15, 2026 — sync with BMAD-METHOD v6.6.0
+
+Syncs game-content and skill changes from BMAD-METHOD v6.3.0 → v6.6.0. The `customize.toml` architecture was already adopted in v0.4.0, so this release ports content, consolidates the PRD and GDD skill trios, and adds a new investigation skill.
+
+### PRD and GDD consolidation
+
+* The `gds-create-prd` / `gds-edit-prd` / `gds-validate-prd` trio is replaced by a single `gds-prd` skill that detects intent (create / update / validate) from one entry point, mirroring upstream BMAD-METHOD's consolidated `bmad-prd`. `gds-prd` ships a compact facilitator `SKILL.md`, a PRD template, a validation checklist, an HTML report renderer, and a From-GDD discovery path that builds the PRD from an existing GDD.
+* The `gds-create-gdd` / `gds-edit-gdd` / `gds-validate-gdd` trio is replaced by a single `gds-gdd` skill on the same pattern. The 24 genre guides, `game-types.csv`, and `genre-complexity.csv` move into `gds-gdd/assets/`; the former 13-step validation pipeline is distilled into `gdd-validation-checklist.md`, preserving the genre-compliance and game-type checks. `gds-gdd` is the canonical primary design document for GDS.
+
+### New skill
+
+* `gds-investigate` — forensic, evidence-graded case-file investigation ported from upstream `bmad-investigate`. Traces bugs, reconstructs incidents, and builds mental models of unfamiliar code. Added to the `gds-agent-game-dev` menu (code `IN`).
+
+### Content ports
+
+* `gds-create-epics-and-stories`: brownfield epic-scoping (upstream #1826) — an Implementation Efficiency principle, a file-churn example pair, a design-completeness assessment, a Review for File Overlap step, and a File Churn Check in final validation. Reduces unnecessary file churn when epics target the same core files.
+* `gds-create-story`: the workflow now reads every UPDATE-marked file before generating dev notes (upstream #2274), so the dev agent knows the current state of code it will modify.
+
+### Catalog and cleanup
+
+* `module-help.csv`: the `after` / `before` columns are renamed `preceded-by` / `followed-by`, matching the upstream catalog schema (#2360).
+* Removed three skills that were catalogued but never implemented — `gds-market-research`, `gds-technical-research`, `gds-quick-prototype` — and the `QP` menu entries pointing at the missing prototype skill. Rebuilding them is tracked in `TODO.md`.
+
+### Engine MCP catalog
+
+* Added an AI-Assisted Development section to the Unity and Godot architecture knowledge files, and three MCP server entries to `engine-mcps.yaml`: Unity's official MCP (noting its paid Unity AI subscription, so the free open-source servers stay preferred) plus the GoPeak and `tugcantopaloglu/godot-mcp` Godot servers. GoPeak is the new default Godot recommendation.
+
 ## v0.4.0 - Apr 21, 2026 — customize.toml pattern across agents and workflows
 
 ### Agent customization surface
