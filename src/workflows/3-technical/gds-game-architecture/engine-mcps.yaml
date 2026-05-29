@@ -261,26 +261,30 @@ engine_mcps:
         description: "First-party MCP server built into Roblox Studio. Gives AI agents direct access to the DataModel, scripts, live Luau execution, asset generation, and playtest control — no copy-pasting needed."
         capabilities:
           # DataModel exploration
-          - "Explore the full DataModel hierarchy by path, ClassName, or keyword filters (search_game_tree)"
+          - "Investigate the place in parallel and return a compact summary (explore_subagent)"
+          - "Explore the instance hierarchy as a flat JSON array (search_game_tree)"
           - "Inspect any Instance's properties, attributes, and children in detail (inspect_instance)"
           # Script tools
           - "Read Scripts, LocalScripts, and ModuleScripts with line numbers (script_read)"
-          - "Search all script contents by string or Luau pattern, capped at 50 matches (script_grep)"
-          - "Find scripts by name via fuzzy match, capped at 10 results (script_search)"
-          - "Create and edit scripts atomically — multiple edits in one operation (multi_edit)"
+          - "Search all script contents by string or Luau pattern (script_grep)"
+          - "Find scripts by name via fuzzy match (script_search)"
+          - "Apply multiple edits to a script atomically (multi_edit)"
           # Live execution
           - "Execute arbitrary Luau in the live game context and return the result (execute_luau)"
-          - "Read Studio console output during a playtest session (get_console_output)"
+          - "Retrieve output logs while the game is running (console_output)"
           # Playtest control
-          - "Start and stop playtesting sessions from the AI session (start_stop_play)"
-          - "Navigate the player character to a position or Instance during play (character_navigation)"
-          - "Send keyboard and mouse inputs to the running game for automated testing (user_keyboard_input, user_mouse_input)"
+          - "Start or stop a playtesting session (start_stop_play)"
+          - "Spawn a test character that runs through gameplay scenarios in its own context (playtest_subagent)"
+          - "Move the player character to a position or Instance during play (character_navigation)"
+          - "Simulate key presses, key holds, and text input (keyboard_input)"
+          - "Simulate mouse clicks, movement, and scrolling (mouse_input)"
           # Visual
-          - "Capture a screenshot of the current Studio edit-time view (screen_capture)"
+          - "Capture the current Studio viewport in Play mode (screen_capture)"
           # AI asset generation
-          - "Generate textured 3D meshes from a text prompt using Roblox AI (generate_mesh)"
-          - "Generate MaterialVariants from a description and base material (generate_material)"
-          - "Insert models from the Roblox Creator Store by search query (insert_from_creator_store)"
+          - "Generate a textured 3D mesh from a text prompt (generate_mesh)"
+          - "Generate a custom material or texture (generate_material)"
+          - "Generate custom procedural models that scale and adapt automatically (generate_procedural_model)"
+          - "Insert assets, plugins, and models from the Creator Store (insert_from_creator_store)"
           # Multi-studio
           - "List all connected Studio instances and switch the active one (list_roblox_studios, set_active_studio)"
         install_type: "Roblox Studio Plugin (official, bundled with Studio or available via Plugin Manager)"
@@ -294,7 +298,7 @@ engine_mcps:
         supported_clients: ["Claude Code", "Claude Desktop"]
         license: "Proprietary (Roblox)"
         note: "Unlike community MCPs for other engines, this is a first-party tool maintained by Roblox. The execute_luau tool — which runs arbitrary Luau in the live game context — is a capability no community engine MCP currently matches. Verify install steps via current Roblox documentation, as the plugin ecosystem evolves."
-        benefit_summary: "The official Roblox Studio MCP gives AI agents 19 tools covering the full edit → script → run → inspect → fix loop. The standout capability is execute_luau: run assertions, inspect live state, fire RemoteEvents, and verify game behavior directly from the AI session without leaving Claude Code."
+        benefit_summary: "The official Roblox Studio MCP gives AI agents 21 tools covering the full edit → script → run → inspect → fix loop. The standout capability is execute_luau: run assertions, inspect live state, fire RemoteEvents, and verify game behavior directly from the AI session without leaving Claude Code."
 
   general:
     engine: "Any"

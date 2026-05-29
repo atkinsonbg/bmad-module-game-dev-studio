@@ -885,20 +885,29 @@ These are not part of the Roblox engine. Each adds capability at the cost of a d
 
 Roblox Studio has an **MCP (Model Context Protocol)** server that gives AI agents direct access to the Studio Editor. When connected, an agent can inspect and modify your game without relying on chat descriptions.
 
-Available tools through the Roblox Studio MCP:
+Available tools through the Roblox Studio MCP (21 total):
 
 | Tool | What it does |
 |---|---|
-| `execute_luau` | Run arbitrary Luau in the live game context |
+| `explore_subagent` | Investigate the place in parallel and return a compact summary |
+| `search_game_tree` | Explore the instance hierarchy as a flat JSON array |
+| `inspect_instance` | Inspect any Instance's properties and children |
 | `script_read` | Read a Script, LocalScript, or ModuleScript |
 | `script_grep` | Search script content by pattern |
 | `script_search` | Find scripts by name |
-| `inspect_instance` | Inspect any Instance's properties and children |
-| `search_game_tree` | Search the DataModel by class or name |
-| `screen_capture` | Capture a screenshot for visual verification |
-| `multi_edit` | Edit multiple scripts in one operation |
+| `multi_edit` | Apply multiple edits to a script atomically |
+| `execute_luau` | Run arbitrary Luau in the live game context |
+| `console_output` | Retrieve output logs while the game is running |
 | `start_stop_play` | Start or stop a playtest session |
-| `get_console_output` | Read the Studio output/console |
+| `playtest_subagent` | Spawn a test character that runs gameplay scenarios in its own context |
+| `character_navigation` | Move the player character to a position or Instance |
+| `keyboard_input` | Simulate key presses, key holds, and text input |
+| `mouse_input` | Simulate mouse clicks, movement, and scrolling |
+| `screen_capture` | Capture the current Studio viewport in Play mode |
+| `generate_mesh` | Generate a textured 3D mesh from a text prompt |
+| `generate_material` | Generate a custom material or texture |
+| `generate_procedural_model` | Generate procedural models that scale and adapt automatically |
+| `insert_from_creator_store` | Insert assets, plugins, and models from the Creator Store |
 | `list_roblox_studios` | List connected Studio sessions |
 | `set_active_studio` | Switch between connected Studio instances |
 
