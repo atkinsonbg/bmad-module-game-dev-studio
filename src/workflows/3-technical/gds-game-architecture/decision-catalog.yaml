@@ -19,7 +19,18 @@ decision_categories:
       phaser:
         pairs_with: ["JavaScript", "TypeScript", "Matter.js", "Arcade Physics"]
       roblox:
-        pairs_with: ["Luau", "DataStoreService", "MemoryStoreService", "RemoteEvents", "TweenService", "UserInputService", "ContextActionService", "Rojo", "Wally"]
+        pairs_with:
+          [
+            "Luau",
+            "DataStoreService",
+            "MemoryStoreService",
+            "RemoteEvents",
+            "TweenService",
+            "UserInputService",
+            "ContextActionService",
+            "Rojo",
+            "Wally",
+          ]
       bevy:
         pairs_with: ["Rust", "ECS", "wgpu"]
       monogame:
@@ -101,7 +112,16 @@ decision_categories:
       custom_udp:
         pairs_with: ["ENet", "LiteNetLib", "GameServer.io", "custom protocol"]
       roblox_networking:
-        pairs_with: ["Roblox", "RemoteEvent", "RemoteFunction", "server-authoritative (mandatory)", "FilteringEnabled", "MemoryStoreService for cross-server", "MessagingService"]
+        pairs_with:
+          [
+            "Roblox",
+            "RemoteEvent",
+            "RemoteFunction",
+            "server-authoritative (mandatory)",
+            "FilteringEnabled",
+            "MemoryStoreService for cross-server",
+            "MessagingService",
+          ]
 
   input_system:
     triggers: ["input", "controls", "controller", "gamepad", "keyboard", "touch", "gesture", "rebinding"]
@@ -119,7 +139,8 @@ decision_categories:
       custom_buffer:
         pairs_with: ["fighting games", "input buffering", "command parsing"]
       roblox_input:
-        pairs_with: ["Roblox", "UserInputService", "ContextActionService", "mobile touch (automatic)", "gamepad (Xbox controller supported)"]
+        pairs_with:
+          ["Roblox", "UserInputService", "ContextActionService", "mobile touch (automatic)", "gamepad (Xbox controller supported)"]
 
   ai_system:
     triggers: ["AI", "enemies", "NPC", "behavior", "pathfinding", "navigation", "companion"]
@@ -155,7 +176,15 @@ decision_categories:
       custom_binary:
         pairs_with: ["performance-sensitive", "large worlds", "anti-tamper"]
       roblox_datastore:
-        pairs_with: ["Roblox", "DataStoreService", "UpdateAsync", "MemoryStoreService session locking", "in-memory cache pattern", "BindToClose flush"]
+        pairs_with:
+          [
+            "Roblox",
+            "DataStoreService",
+            "UpdateAsync",
+            "MemoryStoreService session locking",
+            "in-memory cache pattern",
+            "BindToClose flush",
+          ]
 
   ui_framework:
     triggers: ["UI", "HUD", "menu", "inventory screen", "dialogue box", "health bar", "minimap"]
@@ -173,7 +202,8 @@ decision_categories:
       imgui:
         pairs_with: ["debug tools", "dev UI", "any engine via binding"]
       roblox_gui:
-        pairs_with: ["Roblox", "ScreenGui", "PlayerGui", "vanilla Roblox UI", "Fusion (community reactive)", "Roact (community declarative)"]
+        pairs_with:
+          ["Roblox", "ScreenGui", "PlayerGui", "vanilla Roblox UI", "Fusion (community reactive)", "Roact (community declarative)"]
 
   asset_pipeline:
     triggers: ["assets", "textures", "models", "sprites", "animation", "import", "asset bundles", "streaming"]
@@ -209,7 +239,16 @@ decision_categories:
       vr_headset:
         pairs_with: ["OpenXR", "Meta SDK", "SteamVR", "platform store"]
       roblox_platform:
-        pairs_with: ["Roblox handles all deployment", "PC", "mobile iOS/Android", "Xbox", "VR (Meta Quest)", "no App Store submission required", "Robux monetization"]
+        pairs_with:
+          [
+            "Roblox handles all deployment",
+            "PC",
+            "mobile iOS/Android",
+            "Xbox",
+            "VR (Meta Quest)",
+            "no App Store submission required",
+            "Robux monetization",
+          ]
 
 # Opinionated stack combinations for common game types
 common_stacks:
@@ -245,7 +284,17 @@ common_stacks:
 
   roblox_experience:
     name: "Roblox Experience"
-    components: ["Roblox Studio", "Luau", "DataStoreService + MemoryStoreService", "RemoteEvents/RemoteFunctions", "UserInputService/ContextActionService", "SoundService", "Rojo (version control)", "Wally (packages)"]
+    components:
+      [
+        "Roblox Studio",
+        "Luau",
+        "DataStoreService + MemoryStoreService",
+        "RemoteEvents/RemoteFunctions",
+        "UserInputService/ContextActionService",
+        "SoundService",
+        "Rojo (version control)",
+        "Wally (packages)",
+      ]
     good_for: "Social games, multiplayer experiences, UGC-driven games, games targeting the Roblox platform"
 
   web_browser_game:
@@ -322,7 +371,15 @@ starter_templates:
   roblox_new_place:
     name: "Roblox New Place"
     command_search: "Roblox Studio → New → Baseplate (or your template of choice)"
-    decisions_provided: ["Roblox engine", "Luau language", "server-authoritative networking (mandatory)", "DataStoreService persistence", "platform-managed deployment", "Roblox avatar system"]
+    decisions_provided:
+      [
+        "Roblox engine",
+        "Luau language",
+        "server-authoritative networking (mandatory)",
+        "DataStoreService persistence",
+        "platform-managed deployment",
+        "Roblox avatar system",
+      ]
     good_for: ["Roblox platform games", "multiplayer experiences", "social games", "UGC games"]
 
   bevy_default:
